@@ -1,3 +1,5 @@
+from app_init import app
+
 import dash
 import pandas as pd
 from dash import dcc, html
@@ -15,9 +17,6 @@ df = pd.DataFrame({
     'Values': [20, 14, 23, 25, 18]
 })
 
-# Initialize the Dash app
-app = dash.Dash(__name__)
-
 # Define options for the dropdown selector
 options = [
     {'label': 'Nigeria', 'value': 'Nigeria'},
@@ -33,11 +32,11 @@ app.layout = html.Div([
         id='selector',
         options=options,
         value=options[0]['value'],
-        style={'width': '50%', 'margin': '20px auto'}
+        style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
     ),
     
     html.Div(id='graphs-container')
-], style={'textAlign': 'center'})
+])
 
 
 # Define callback to update the graphs based on the selected value

@@ -3,7 +3,6 @@
 '''
 from flask_failsafe import failsafe
 
-
 @failsafe
 def create_app():
     '''
