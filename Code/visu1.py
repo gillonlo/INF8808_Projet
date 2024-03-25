@@ -1,8 +1,17 @@
+import dash
+import pandas as pd
+from dash import dcc, html
 import plotly.graph_objs as go
+from dash.dependencies import Input, Output
 
-from plotly import graph_objects as go
+def get_section(data : pd.DataFrame, team : str) -> dcc.Graph :
+    return [dcc.Graph(
+            id='visu_1',
+            figure=get_figure(data=data, team=team),
+            style={'width': '70%', 'margin': '0 auto'})
+            ]
 
-def get_figure(data, team):
+def get_figure(data : pd.DataFrame, team : str) -> dict :
     fig = go.Figure()
 
     color_scale = ['#999999','#999999','#999999','#999999','#999999']
