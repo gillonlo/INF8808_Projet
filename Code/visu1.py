@@ -5,6 +5,7 @@ import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 
 def get_section(data : pd.DataFrame, team : str) -> dcc.Graph :
+    
     return [dcc.Graph(
             id='visu_1',
             figure=get_figure(data=data, team=team),
@@ -18,11 +19,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
 
     # Add funnel traces
     fig.add_trace(go.Funnel(
-        name='Namibie',
+        name='Namibia',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Namibie"],  # Add name here
+        text=["Namibia"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -36,11 +37,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Cameroun',
+        name='Cameroon',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Cameroun"],  # Add name here
+        text=["Cameroon"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -54,11 +55,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Mauritanie',
+        name='Mauritania',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Mauritanie"],  # Add name here
+        text=["Mauritania"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -72,11 +73,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Maroc',
+        name='Morocco',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Maroc"],  # Add name here
+        text=["Morocco"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -90,11 +91,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Guinée Éq.',
+        name='Equ. Guinea',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Guinée Éq."],  # Add name here
+        text=["Equ. Guinea"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -108,11 +109,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Egypte',
+        name='Egypt',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Egypte"],  # Add name here
+        text=["Egypt"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -126,11 +127,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Sénégal',
+        name='Senegal',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Sénégal"],  # Add name here
+        text=["Senegal"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -144,11 +145,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Burk. Faso',
+        name='Burkina Faso',
         orientation='h',
         y=["8ème"],
         x=[200],
-        text=["Burk. Faso"],  # Add name here
+        text=["Burkina Faso"],  # Add name here
         textinfo="text",
         marker=dict(color=color_scale[0])
     ))
@@ -180,11 +181,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Cap-Vert',
+        name='Cape Verde',
         orientation='h',
         y=["8ème", "Quart"],
         x=[200, 200],
-        text=["Cap-Vert", "Cap-Vert"],  # Add names here
+        text=["Cape Verde", "Cape Verde"],  # Add names here
         textinfo="text",
         marker=dict(color=color_scale[1])
     ))
@@ -198,11 +199,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Guinée',
+        name='Guinea',
         orientation='h',
         y=["8ème", "Quart"],
         x=[200, 200],
-        text=["Guinée", "Guinée"],  # Add names here
+        text=["Guinea", "Guinea"],  # Add names here
         textinfo="text",
         marker=dict(color=color_scale[1])
     ))
@@ -234,11 +235,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Af. du Sud',
+        name='South Africa',
         orientation='h',
         y=["8ème", "Quart", "Semi-finale"],
         x=[200, 200, 200],
-        text=["Af. du Sud", "Af. du Sud", "Af. du Sud"],  # Add names here
+        text=["South Africa", "South Africa", "South Africa"],  # Add names here
         textinfo="text",
         marker=dict(color=color_scale[2])
     ))
@@ -252,11 +253,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='RD Congo',
+        name='Congo DR',
         orientation='h',
         y=["8ème", "Quart", "Semi-finale"],
         x=[200, 200, 200],
-        text=["RD Congo", "RD Congo", "RD Congo"],  # Add names here
+        text=["Congo DR", "Congo DR", "Congo DR"],  # Add names here
         textinfo="text",
         marker=dict(color=color_scale[2])
     ))
@@ -288,11 +289,11 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             ))
 
     fig.add_trace(go.Funnel(
-        name='Côte d\'Ivoire',
+        name="Côte d'Ivoire",
         orientation='h',
         y=["8ème", "Quart", "Semi-finale", "Finale", "Winner"],
         x=[200, 200, 200, 200, 200],
-        text=["Côte d'Iv.", "Côte d'Iv.", "Côte d'Iv.", "Côte d'Iv.", "Côte d'Iv."],  # Add names here
+        text=["Côte d'Ivoire", "Côte d'Ivoire", "Côte d'Ivoire", "Côte d'Ivoire", "Côte d'Ivoire"],  # Add names here
         textinfo="text",
         marker=dict(color=color_scale[4])
     ))

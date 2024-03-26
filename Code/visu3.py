@@ -12,16 +12,18 @@ def get_section(data : pd.DataFrame, team : str) -> dcc.Graph :
             ]
 
 def get_figure(data : pd.DataFrame, team : str) -> dict :
+    labels = ['A', 'B', 'C', 'D', 'E']
+    values = [20, 30, 25, 15, 10]
     # EXEMPLE : pie chart avec toy dataset
     fig = {
-        'data': [
-            go.Pie(
-                labels=data['Category'],
-                values=data['Values']
-            )
-        ],
-        'layout': go.Layout(
-            title='Pie Chart'
+    'data': [
+        go.Pie(
+            labels=labels,
+            values=values
         )
-    }
+    ],
+    'layout': go.Layout(
+        title='Pie Chart'
+    )
+}
     return fig

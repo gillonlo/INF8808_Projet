@@ -5,52 +5,38 @@ import pandas as pd
 from dash import dcc, html
 import plotly.graph_objs as go
 from dash.dependencies import Input, Output
-
 import visu1
 import visu2
 import visu3
 import visu4
 
-# Sample data
-df = pd.DataFrame({
-    'Category': ['A', 'B', 'C', 'D', 'E'],
-    'Values': [20, 14, 23, 25, 18]
-})
+# get data
+df = pd.read_csv("INF8808_Projet/Data/projet_data_3.csv", delimiter=';')
+all_teams = pd.concat([df['Team1'], df['Team2']])
 
-# Define options for the dropdown selector
-options = [
-    {'label': 'Nigeria', 'value': 'Nigeria'},
-    {'label': 'Namibie', 'value': 'Namibie'},
-    {'label': 'Côte d\'Ivoire', 'value': 'Côte d\'Ivoire'}
-]
+# get unique teams
+unique_teams = all_teams.unique()
+
+
 
 # Define the layout of the dashboard
 app.layout = html.Div([
     html.H1("Caractérisation des équipes de la Coupe d'Afrique de Nations (CAN)", style={'textAlign': 'center'}),
-    
     dcc.Dropdown(
-        id='selector',
-        options=options,
-        value=options[0]['value'],
+        id='team-selector',
+        options=[{'label': country, 'value': country} for country in unique_teams],
+        value=unique_teams[0],
         style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
     ),
-    
-    html.Div(id='graphs-container')
+    html.Div(id='visu-container')
 ])
-
 
 # Define callback to update the graphs based on the selected value
 @app.callback(
-    Output('graphs-container', 'children'),
-    [Input('selector', 'value')]
+    Output('visu-container', 'children'),
+    [Input('team-selector', 'value')]
 )
 def update_graphs(selected_value):
-    return [html.Div(visu1.get_section(data=df, team=selected_value), 
-                     className='part_1'), 
-            html.Div(visu2.get_section(data=df, team=selected_value), 
-                     className='part_2'), 
-            html.Div(visu3.get_section(data=df, team=selected_value), 
-                     className='part_3'), 
-            html.Div(visu4.get_section(data=df, team=selected_value), 
-                     className='part_4')
-            ]
+    graphs = [html.Div(visu.get_section(data=df, team=selected_value), className=f'part_{i+1}') 
+              for i, visu in enumerate([visu1,visu2,visu3,visu4])]
+    return graphs
