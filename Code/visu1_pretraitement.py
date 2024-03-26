@@ -6,6 +6,8 @@ def get_data(data_teams_attack : pd.DataFrame,
              data_tournament : pd.DataFrame, 
              data_teams_defense : pd.DataFrame) -> pd.DataFrame :
     
+    data_tournament = data_tournament.copy()
+    
     to_replace = {'Round of 16' : 1,
                   'Quarter-finals' : 2,
                   'Semi-finals' : 3,

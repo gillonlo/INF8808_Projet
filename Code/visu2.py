@@ -41,7 +41,7 @@ def update_output(selected_option : str) -> list :
         return [
             html.Div(
                 [dcc.Graph(
-                    id='visu_3_'+str(i),
+                    id='visu_2_'+str(i),
                     figure=get_figure(data=new_data.iloc[i], team=TEAM, categories=categories, classement=i),
                     style={'width': '20%', 'margin': '0 auto', 'display': 'inline-block'})
                     for i in list(range(9))+index
@@ -57,7 +57,7 @@ def update_output(selected_option : str) -> list :
         return [
             html.Div(
                 [dcc.Graph(
-                    id='visu_3_'+str(i),
+                    id='visu_2_'+str(i),
                     figure=get_figure(data=new_data.iloc[i], team=TEAM, categories=categories, classement=i),
                     style={'width': '20%', 'margin': '0 auto', 'display': 'inline-block'})
                     for i in list(range(9))+index

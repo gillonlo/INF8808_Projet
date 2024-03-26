@@ -6,6 +6,9 @@ def get_data(data_teams_attack : pd.DataFrame,
              data_tournament : pd.DataFrame, 
              data_teams_defense : pd.DataFrame) -> pd.DataFrame :
 
+    data_teams_attack = data_teams_attack.copy()
+    data_teams_defense = data_teams_defense.copy()
+
     data_teams_defense['Squad'] = data_teams_defense['Squad'].str.replace('vs ', '')
     
     # Attack
