@@ -37,4 +37,6 @@ def get_data(data_teams_attack : pd.DataFrame,
     merged_df.drop('Team', axis=1, inplace=True)
     merged_df.fillna(0.0, inplace=True)
     
+    print(merged_df)
+    
     return merged_df
