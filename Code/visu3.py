@@ -43,7 +43,6 @@ def get_section(data : pd.DataFrame, team : str) -> list :
     [Input('criteria2', 'value')]
 )
 def update_output(selected_option : str) -> list :
-    print( sorted(list(DATA['Round'].unique())))
     return [dcc.Graph(
             id='visu_3',
             figure=get_figure(data=DATA[DATA['Round'] == i], team=TEAM, criteria=selected_option, phase=i),

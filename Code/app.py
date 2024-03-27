@@ -53,7 +53,7 @@ app.layout = html.Div([
     dcc.Dropdown(
         id='team-selector',
         options=[{'label': country, 'value': country} for country in data_init],
-        value=data_init[0],
+        value="Côte d'Ivoire",
         style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
     ),
     html.Div(id='visu-container')
