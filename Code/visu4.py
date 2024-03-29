@@ -1,3 +1,4 @@
+import copy
 import dash
 import pandas as pd
 from dash import dcc, html
@@ -7,6 +8,8 @@ from dash.dependencies import Input, Output
 from app_init import app
 
 def get_section(data: pd.DataFrame, team: str) -> list:
+    global data_copy
+    data_copy = copy.deepcopy(data)
     return [
         html.Div([
             dcc.RadioItems(
@@ -21,13 +24,19 @@ def get_section(data: pd.DataFrame, team: str) -> list:
             ),
             dcc.Graph(
                 id='visu_4',
-                figure=get_figure(data=data, team=team),
+                figure=get_figure(data=data[0], team=team),
+                style={'width': '70%', 'margin': '0 auto'}
+            ),
+             dcc.Graph(
+                id='region-stats',  # ID du graphique à bandes
                 style={'width': '70%', 'margin': '0 auto'}
             ),
             html.Div(id='output-container-radio'),  # Ajouter un élément de sortie pour l'option sélectionnée
             html.Div(id='output-container-map')  # Ajouter un élément de sortie pour la région sélectionnée sur la carte
         ])
     ]
+    
+
 
 def get_figure(data: pd.DataFrame, team: str) -> dict:
     # Créer une carte de l'Afrique avec des régions colorées
@@ -46,8 +55,8 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
     fig.update_layout(
         dragmode=False,
         uirevision=True,
-        margin=dict(l=0, r=50, t=0, b=0),  # Réduire les marges
-        clickmode='event+select',  # Activer le mode de clic pour récupérer la région sélectionnée
+        margin=dict(l=0, r=50, t=0, b=0),
+        clickmode='event+select',  
     )
 
     return fig
@@ -58,6 +67,14 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
 )
 def display_selected_option(value):
     print( f"The selected option is: {value}")
+    if value == 'Attaque':
+        print("Voici les données d'attaque :")
+        print(data_copy[2])  
+    elif value == 'Défense':
+        print("Voici les données de défense :")
+        print(data_copy[3])  
+    else:
+        print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
 
 @app.callback(
     Output('output-container-map', 'children'),
@@ -67,5 +84,4 @@ def display_selected_region(selectedData):
     if selectedData:
         selected_region = selectedData['points'][0]['hovertext']
         print( f"You selected the {selected_region} region.")
-
 
