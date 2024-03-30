@@ -49,4 +49,8 @@ def get_data(data_teams_attack: pd.DataFrame,
     defense_means = data_teams_defense.groupby('Region')[['Gls90', 'Ast90', 'Poss']].mean()
     defense_means.rename(columns={'Gls90': 'Avg_Gls90_Defense', 'Ast90': 'Avg_Ast90_Defense', 'Poss': 'Avg_Poss_Defense'}, inplace=True)
 
+    # Ramener la colonne 'Poss' à une échelle de 0 à 1
+    attack_means['Avg_Poss_Attack'] /= 100
+    defense_means['Avg_Poss_Defense'] /= 100
+
     return [data_teams_attack,data_teams_defense,attack_means, defense_means]
