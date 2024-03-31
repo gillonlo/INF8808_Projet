@@ -64,7 +64,8 @@ def get_figure(data : pd.DataFrame, team : str, criteria : str, phase : float) -
                 x=data[data['Squad'] == x][criteria], 
                 y = [random.random()*20 for i in range(len(data[data['Squad'] == x][criteria]))], 
                 mode = 'markers',
-                marker=dict(color='blue')
+                marker=dict(color='blue'),
+                hoverinfo='skip'
             ))
         else :
             trigger = 1
@@ -74,7 +75,8 @@ def get_figure(data : pd.DataFrame, team : str, criteria : str, phase : float) -
             x=data[data['Squad'] == x][criteria], 
             y = [random.random()*20 for i in range(len(data[data['Squad'] == x][criteria]))], 
             mode = 'markers',
-            marker=dict(color='red',size=10)
+            marker=dict(color='red',size=10),
+            hoverinfo='skip'
         ))
     
     fig.update_layout(

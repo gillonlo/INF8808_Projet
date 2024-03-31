@@ -48,7 +48,7 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
                         scope="africa")
 
     fig.update_geos(showcountries=True, showcoastlines=False, showland=False, fitbounds="locations", showframe=False)
-    fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>")
+    fig.update_traces(hovertemplate="<b>%{hovertext}</b><br> <extra></extra>")
 
     # Désactiver le zoom et le panoramique
     fig.update_layout(
@@ -98,25 +98,23 @@ def display_selected_region(selectedData):
     [Input('criteria', 'value'),
      Input('visu_4', 'selectedData')]
 )
-def update_bar_plot(value, selectedData):
-    print('helooooooooooo')
-    
+def update_bar_plot(value, selectedData):    
     attack_means = data_copy[2]
     defense_means = data_copy[3]
     
     if value == 'Attaque':
         fig = go.Figure(data=[
-            go.Bar(name='Average Goals Scored per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Gls90_Attack']),
-            go.Bar(name='Average Assists per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Ast90_Attack']),
-            go.Bar(name='Average Possession', x=attack_means.index, y=attack_means['Avg_Poss_Attack'])
+            go.Bar(name='Average Goals Scored per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Gls90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Average Assists per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Ast90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Average Possession', x=attack_means.index, y=attack_means['Avg_Poss_Attack'], hovertemplate= "TODO" + "<extra></extra>")
         ])
         fig.update_layout(barmode='group', title='Average Metrics for Attack by Region')
     elif value == 'Défense':
         
         fig = go.Figure(data=[
-            go.Bar(name='Average Goals Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Gls90_Defense']),
-            go.Bar(name='Average Assists Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Ast90_Defense']),
-            go.Bar(name='Average Possession Conceded', x=defense_means.index, y=defense_means['Avg_Poss_Defense'])
+            go.Bar(name='Average Goals Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Gls90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Average Assists Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Ast90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Average Possession Conceded', x=defense_means.index, y=defense_means['Avg_Poss_Defense'], hovertemplate= "TODO" + "<extra></extra>")
         ])
         fig.update_layout(barmode='group', title='Average Metrics for Defense by Region')
     
