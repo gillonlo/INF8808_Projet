@@ -5,11 +5,13 @@ from dash import dcc, html
 import plotly.graph_objs as go
 import plotly.express as px
 from dash.dependencies import Input, Output
+
 from app_init import app
 
 def get_section(data: pd.DataFrame, team: str) -> list:
     global data_copy
     data_copy = copy.deepcopy(data)
+   
     
     return [
         html.Div([
@@ -37,28 +39,67 @@ def get_section(data: pd.DataFrame, team: str) -> list:
         ])
     ]
 
-def get_figure(data: pd.DataFrame, team: str) -> dict:
-    # Créer une carte de l'Afrique avec des régions colorées
-    fig = px.choropleth(data, 
-                        locations="Squad",  # Colonnes des noms de pays
-                        locationmode="country names",  # Mode de localisation des pays
-                        color="Region",  # Colonne de la région
-                        hover_name="Region",  # Nom à afficher au survol
-                        color_discrete_map={"Nord": "blue", "Australe": "orange", "Ouest": "red", "Centrale": "green", "Est": "yellow"},
-                        scope="africa")
-
-    fig.update_geos(showcountries=True, showcoastlines=False, showland=False, fitbounds="locations", showframe=False)
-    fig.update_traces(hovertemplate="<b>%{hovertext}</b><br> <extra></extra>")
-
-    # Désactiver le zoom et le panoramique
-    fig.update_layout(
-        dragmode=False,
-        uirevision=True,
-        margin=dict(l=0, r=50, t=0, b=0),
-        clickmode='event+select',  
-    )
+def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     
+    # Définition des régions avec les pays associés
+    regions = {
+        "Nord": ["Morocco", "Algeria", "Tunisia", "Egypt", "Libya"],
+        "Est": ["Sudan", "South Sudan", "Ethiopia", "Somalia", "Kenya", "Uganda", "Rwanda", "Burundi", "Tanzania", "Djibouti", "Eritrea"],
+        "Ouest": ["Mauritania", "Mali", "Niger", "Nigeria", "Chad", "Senegal", "Gambia", "Guinea-Bissau", "Guinea", "Sierra Leone", "Liberia", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Benin"],
+        "Centrale": ["Cameroon", "Central African Republic", "Chad", "Congo DR", "Congo", "Gabon", "Equ. Guinea", "Sao Tome and Principe"],
+        "Australe": ["Angola", "Zambia", "Zimbabwe", "Malawi", "Botswana", "Namibia", "South Africa", "Lesotho", "Swaziland", "Madagascar"]
+    }
+
+    # Récupération de la région du pays sélectionné
+    selected_region = data[data['Squad'] == team]['Region'].iloc[0]
+    
+
+    # Création de la liste des traces pour chaque région
+    traces = []
+
+    # Création de la carte de l'Afrique
+    fig = go.Figure()
+    
+
+    # Parcours de chaque région
+    for region, countries in regions.items():
+        # Couleur de la région
+        color = 'red' if region == selected_region else 'gray'
+        # Création de la trace pour la région
+        trace = go.Choropleth(
+            locations=countries,
+            z=[1]*len(countries),  
+            locationmode='country names',
+            colorscale=[[0, color], [1, color]],  
+            hoverinfo='location',
+            hovertemplate='%{location}<br>Région: ' + region + '<extra></extra>',
+            showlegend=False,
+            showscale=False  # Ne pas afficher l'échelle
+        )
+        traces.append(trace)
+
+    # Ajout des traces à la figure
+    for trace in traces:
+        fig.add_trace(trace)
+
+    # Mise en forme de la carte
+    fig.update_layout(
+        title_text="Carte de l'Afrique par régions",
+        geo=dict(
+            showframe=False,
+            showcoastlines=False,
+            projection_type='equirectangular',
+            bgcolor='rgba(0,0,0,0)',
+            scope='africa',  
+        ),
+        
+         
+    )
+
     return fig
+
+
+
 
 @app.callback(
     Output('output-container-radio', 'children'),
@@ -75,61 +116,48 @@ def display_selected_option(value):
     else:
         print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
 
-@app.callback(
-    Output('output-container-map', 'children'),
-    [Input('visu_4', 'selectedData')]
-)
-def display_selected_region(selectedData):
-    if selectedData:
-        selected_region = selectedData['points'][0]['hovertext']
-        print(f"You selected the {selected_region} region.")
-        # Filtrer les données pour n'afficher que les pays de la région sélectionnée
-        filtered_data = data_copy[0][data_copy[0]['Region'] == selected_region]
-        # Créer une liste des noms de pays de cette région
-        countries_in_region = filtered_data['Squad'].tolist()
-        print(f"Countries in the {selected_region} region: {countries_in_region}")
-        return countries_in_region
-    else:
-        return None
+
 
 
 @app.callback(
     Output('bar_plot', 'figure'),
     [Input('criteria', 'value'),
-     Input('visu_4', 'selectedData')]
+     Input('team-selector', 'value')]
 )
-def update_bar_plot(value, selectedData):    
-    attack_means = data_copy[2]
-    defense_means = data_copy[3]
+def update_bar_plot(valeur, equipe):
+    print(equipe)   
+    moyennes_attaque = data_copy[2]
+    moyennes_defense = data_copy[3]
     
-    if value == 'Attaque':
+    if valeur == 'Attaque':
         fig = go.Figure(data=[
-            go.Bar(name='Average Goals Scored per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Gls90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
-            go.Bar(name='Average Assists per 90 Minutes', x=attack_means.index, y=attack_means['Avg_Ast90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
-            go.Bar(name='Average Possession', x=attack_means.index, y=attack_means['Avg_Poss_Attack'], hovertemplate= "TODO" + "<extra></extra>")
+            go.Bar(name='Buts marqués en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Gls90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Passe décisive en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Possession moyenne', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Poss_Attack'], hovertemplate= "TODO" + "<extra></extra>")
         ])
-        fig.update_layout(barmode='group', title='Average Metrics for Attack by Region')
-    elif value == 'Défense':
+        fig.update_layout(barmode='group', title='Métriques moyennes pour l\'attaque par région')
+    elif valeur == 'Défense':
         
         fig = go.Figure(data=[
-            go.Bar(name='Average Goals Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Gls90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
-            go.Bar(name='Average Assists Conceded per 90 Minutes', x=defense_means.index, y=defense_means['Avg_Ast90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
-            go.Bar(name='Average Possession Conceded', x=defense_means.index, y=defense_means['Avg_Poss_Defense'], hovertemplate= "TODO" + "<extra></extra>")
+            go.Bar(name='Buts concédés en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Gls90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Passe décisive concédée en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate= "TODO" + "<extra></extra>"),
+            go.Bar(name='Possession concédée moyenne', x=moyennes_defense.index, y=moyennes_defense['Avg_Poss_Defense'], hovertemplate= "TODO" + "<extra></extra>")
         ])
-        fig.update_layout(barmode='group', title='Average Metrics for Defense by Region')
+        fig.update_layout(barmode='group', title='Métriques moyennes pour la défense par région')
     
-    # Highlight selected region in red
-    if selectedData:
-        selected_region = selectedData['points'][0]['hovertext']
-        selected_region_index = attack_means.index.get_loc(selected_region)
+    # Mettre en surbrillance la région sélectionnée en rouge
+    if equipe:
+        region_selectionnee = data_copy[0][data_copy[0]['Squad'] == equipe]['Region'].iloc[0]
+
+        indice_region_selectionnee = moyennes_attaque.index.get_loc(region_selectionnee)
         fig.add_shape(
             type="rect",
             xref="x",
             yref="y",
-            x0=selected_region_index - 0.5,
+            x0=indice_region_selectionnee - 0.5,
             y0=0,
-            x1=selected_region_index + 0.5,
-            y1=attack_means.loc[selected_region, 'Avg_Poss_Attack'] + 1,
+            x1=indice_region_selectionnee + 0.5,
+            y1=moyennes_attaque.loc[region_selectionnee, 'Avg_Poss_Attack'] + 1,
             line=dict(
                 color="red",
                 width=3,
