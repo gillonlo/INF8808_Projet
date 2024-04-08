@@ -3,6 +3,9 @@
 '''
 from flask_failsafe import failsafe
 
+from Code.app import server
+server = server
+
 @failsafe
 def create_app():
     '''
@@ -15,8 +18,6 @@ def create_app():
     from Code.app import app  # pylint: disable=import-outside-toplevel
     return app.server
 
-
 if __name__ == "__main__":
-    from Code.app import server
-    server = server
+    
     create_app().run(port="8050", debug=True)
