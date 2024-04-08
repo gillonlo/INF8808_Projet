@@ -1,4 +1,4 @@
-from app_init import app
+from Code.app_init import app
 
 import dash
 import pandas as pd
@@ -35,16 +35,16 @@ images = {
     'Zambia': 'https://ipdata.co/flags/zm.png',
 }
 
-import visu1
-import visu2
-import visu3
-import visu4
+import Code.visu1 as visu1
+import Code.visu2 as visu2
+import Code.visu3 as visu3
+import Code.visu4 as visu4
 
-import init_pretraitement
-import visu1_pretraitement
-import visu2_pretraitement
-import visu3_pretraitement
-import visu4_pretraitement
+import Code.init_pretraitement as init_pretraitement
+import Code.visu1_pretraitement as visu1_pretraitement
+import Code.visu2_pretraitement as visu2_pretraitement
+import Code.visu3_pretraitement as visu3_pretraitement
+import Code.visu4_pretraitement as visu4_pretraitement
 
 # Prétraitement
 df_1 = pd.read_csv("Data/projet_data_1.csv", delimiter=';')

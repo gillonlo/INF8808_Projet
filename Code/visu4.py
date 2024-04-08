@@ -6,7 +6,7 @@ import plotly.graph_objs as go
 import plotly.express as px
 from dash.dependencies import Input, Output
 
-from app_init import app
+from Code.app_init import app
 
 def get_section(data: pd.DataFrame, team: str) -> list:
     global data_copy
