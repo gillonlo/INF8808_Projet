@@ -8,6 +8,8 @@ from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 import plotly.express as px
 
+server = app.server
+
 images = {
     'Algeria': 'https://ipdata.co/flags/dz.png',
     'Angola': 'https://ipdata.co/flags/ao.png',
