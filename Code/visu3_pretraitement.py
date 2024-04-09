@@ -27,7 +27,7 @@ def get_data(data_teams_attack : pd.DataFrame,
     max_round = max_round.sort_values(by=['Round','Team']).reset_index(drop=True)
 
     # Joueurs
-    new_df_player = data_players[['Player','Squad','Age','MP','Min','Gls90', 'Ast90', 'G-PK90']].copy()
+    new_df_player = data_players[['Player','Pos','Squad','Age','MP','Min','Gls90', 'Ast90', 'G-PK90']].copy()
     new_df_player['Fatigue'] = new_df_player['Min']/new_df_player['MP']
     new_df_player['Score'] = new_df_player['Gls90'] + new_df_player['Ast90'] + new_df_player['G-PK90']
     new_df_player.drop(['Gls90', 'Ast90', 'G-PK90'], axis=1, inplace=True)
@@ -36,5 +36,5 @@ def get_data(data_teams_attack : pd.DataFrame,
     merged_df = pd.merge(new_df_player, max_round, left_on='Squad', right_on='Team', how='outer')
     merged_df.drop('Team', axis=1, inplace=True)
     merged_df.fillna(0.0, inplace=True)
-    
+        
     return merged_df
