@@ -40,8 +40,8 @@ def update_output(selected_option: str) -> list:
             by=['Attack_Sum'], ascending=False).reset_index(drop=True)
         index = [i for i in range(len(new_data))
                  if new_data.iloc[i]['Squad'] == TEAM]
-        if index[0] <= 10:
-            index = [9]
+        if index[0] <= 9:
+            index = [8]
         categories = ['Passes tentées', 'Buts marqués',
                       'Passes décisives', 'Buts sans pénalité']
 
@@ -50,8 +50,8 @@ def update_output(selected_option: str) -> list:
             by=['Defense_Sum'], ascending=False).reset_index(drop=True)
         index = [i for i in range(len(new_data))
                  if new_data.iloc[i]['Squad'] == TEAM]
-        if index[0] <= 10:
-            index = [9]
+        if index[0] <= 9:
+            index = [8]
         categories = ['Passes adverses tentées', 'Buts reçus',
                       'Passes décisives adverses', 'Buts sans pénalités reçus']
     return [
@@ -60,8 +60,8 @@ def update_output(selected_option: str) -> list:
                 id='visu_2_'+str(i),
                 figure=get_figure(
                     data=new_data.iloc[i], team=TEAM, criteria=selected_option, categories=categories, classement=i),
-                style={'width': '20%', 'margin': '0 auto', 'display': 'inline-block'})
-                for i in list(range(9))+index
+                style={'width': '33%', 'margin': '0 auto', 'display': 'inline-block'})
+                for i in list(range(8))+index
              ],
             className='row')
     ]
@@ -80,7 +80,7 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
     if squad_name == team:
         color = 'rgba(255, 0, 0, 0.3)'
     else:
-        color = 'rgba(169, 169, 169, 0.1)'
+        color = 'rgba(223, 230, 224, 0.5)'
 
     fig = go.Figure()
 
@@ -107,11 +107,6 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
             bgcolor=color
         ),
         title_x=0.5,  # Centering the title horizontally
-        legend=dict(
-            font=dict(
-                size=10  # Adjust this value to change the size of the legend text
-            )
-        )
     )
 
     return fig
