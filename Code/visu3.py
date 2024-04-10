@@ -55,7 +55,7 @@ def update_output(selected_option: str) -> list:
 
 
 def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> dict:
-    scale = {'Score': [0, 4],
+    scale = {'Score': [-0.5, 6],
              'Age': [15, 40],
              'Fatigue': [0, 100]}
 
@@ -73,14 +73,13 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
                             line=dict(color='rgb(6, 18, 117, 230)', width=1)),
                 hoverinfo='text',
                 hovertemplate='<span style="font-size:20px">%{text}</span><br>' +
-                "<b>Position:</b> %{customdata[1]}<br>" +
-                "<b>Team:</b> %{customdata[2]}<br>" +
-                "<b>Age:</b> %{customdata[3]}<br>" +
-                "<b>Minutes Played:</b> %{customdata[4]:.2f}<br>" +
-                "<b>Pourcentage de fatigue:</b> %{customdata[5]:.2f}<extra></extra>",
+                "<b>Position:</b> %{customdata[0]}<br>" +
+                "<b>Team:</b> %{customdata[1]}<br>" +
+                "<b>Age:</b> %{customdata[2]}<br>" +
+                "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}<extra></extra>",
                 text=data[data['Squad'] == x]['Player'],
-                customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Age',
-                                                     'Min', 'Fatigue', 'Score']]
+                customdata=data[data['Squad'] == x][[
+                    'Pos', 'Squad', 'Age', 'Fatigue']]
             ))
         else:
             trigger = 1
@@ -94,22 +93,22 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
                         line=dict(color='rgb(255, 0, 0, 230)', width=1)),
             hoverinfo='text',
             hovertemplate='<span style="font-size:20px">%{text}</span><br>' +
-            "<b>Position:</b> %{customdata[1]}<br>" +
-            "<b>Team:</b> %{customdata[2]}<br>" +
-            "<b>Age:</b> %{customdata[3]}<br>" +
-            "<b>Minutes Played:</b> %{customdata[4]:.2f}<br>" +
-            "<b>Pourcentage de fatigue:</b> %{customdata[5]:.2f}<extra></extra>",
+            "<b>Position:</b> %{customdata[0]}<br>" +
+            "<b>Team:</b> %{customdata[1]}<br>" +
+            "<b>Age:</b> %{customdata[2]}<br>" +
+            "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}<extra></extra>",
             text=data[data['Squad'] == x]['Player'],
-            customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Age',
-                                                 'Min', 'Fatigue', 'Score']]
+            customdata=data[data['Squad'] == x][[
+                'Pos', 'Squad', 'Age', 'Fatigue']]
         ))
-
+        print(data[data['Squad'] == x][[
+            'Pos', 'Squad', 'Age', 'Fatigue']])
     fig.update_layout(
         title=to_replace[phase],
         height=200,
         plot_bgcolor='rgba(0, 0, 0, 0)',
         yaxis=dict(showticklabels=False),
-        margin=dict(l=10, r=10, t=50, b=50),
+        margin=dict(l=10, r=10, t=50, b=5),
     )
 
     fig.update_layout(showlegend=False)
