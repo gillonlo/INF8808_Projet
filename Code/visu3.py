@@ -57,7 +57,7 @@ def update_output(selected_option: str) -> list:
 def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> dict:
     scale = {'Score': [-0.5, 6],
              'Age': [15, 40],
-             'Fatigue': [0, 100]}
+             'Fatigue': [0, 101]}
 
     fig = go.Figure()
 
