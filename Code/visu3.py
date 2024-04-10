@@ -28,7 +28,7 @@ def get_section(data: pd.DataFrame, team: str) -> list:
             id='criteria2',
             options=[
                 {'label': '  Score', 'value': 'Score'},
-                {'label': '  Age', 'value': 'Age'},
+                {'label': '  Âge', 'value': 'Age'},
                 {'label': '  Fatigue', 'value': 'Fatigue'}
             ],
             value='Score',
@@ -109,7 +109,7 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
         height=200,
         plot_bgcolor='rgba(0, 0, 0, 0)',
         yaxis=dict(showticklabels=False),
-        margin=dict(l=10, r=10, t=50, b=50)
+        margin=dict(l=10, r=10, t=50, b=50),
     )
 
     fig.update_layout(showlegend=False)
