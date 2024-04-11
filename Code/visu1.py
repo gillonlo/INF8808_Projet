@@ -37,11 +37,17 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
         list_match = []
         for item in match_df.iterrows() : 
             list_match.append(str(name_of_round[idx]) + " : " + item[1]['Team1'] + " vs " + item[1]['Team2'] + "  "+  item[1]['Score'])
-            list_match.append("Nombre de specateurs : " + item[1]['Attendance'])
+            list_match.append("Nombre de spectateurs : " + item[1]['Attendance'])
             list_match.append("")
             idx+=1
         if i == 15 : 
             list_match.append("Gagnant de la CAN")
+        elif i == 14:
+            list_match.append("2e de la CAN")
+        elif i == 13:
+            list_match.append("3e de la CAN")    
+        elif i == 12:
+            list_match.append("4e de la CAN")
 
         fig.add_trace(go.Funnel(
             name=name,
