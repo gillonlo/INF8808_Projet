@@ -90,7 +90,7 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
         theta=categories,
         name=squad_name,
         hoverinfo="text",
-        hovertemplate="%{theta}<br>""%{r}<extra></extra>",
+        hovertemplate="%{theta}<br>""%{r:.2f}<extra></extra>",
     ))
 
     fig.update_layout(
