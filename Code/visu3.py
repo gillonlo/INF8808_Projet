@@ -75,8 +75,8 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
                 hovertemplate='<span style="font-size:20px">%{text}</span><br>' +
                 "<b>Position:</b> %{customdata[0]}<br>" +
                 "<b>Équipe:</b> %{customdata[1]}<br>" +
-                "<b>Âge:</b> %{customdata[2]}<br>" +
-                "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}<extra></extra>",
+                "<b>Âge:</b> %{customdata[2]} ans<br>" +
+                "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}%<extra></extra>",
                 text=data[data['Squad'] == x]['Player'],
                 customdata=data[data['Squad'] == x][[
                     'Pos', 'Squad', 'Age', 'Fatigue']]
