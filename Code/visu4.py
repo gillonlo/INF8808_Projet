@@ -13,9 +13,7 @@ def get_section(data: pd.DataFrame, team: str) -> list:
     data_copy = copy.deepcopy(data)
    
     
-    return [
-        html.Div([
-            dcc.RadioItems(
+    return [dcc.RadioItems(
                 id='criteria',
                 options=[
                     {'label': '  Attaque', 'value': 'Attaque'},
@@ -25,19 +23,20 @@ def get_section(data: pd.DataFrame, team: str) -> list:
                 labelStyle={'display': 'inline-block', 'margin-right': '10px'},
                 style={'border': '1px solid #ccc', 'padding': '10px', 'display': 'inline-block', 'margin-left': '20%'}
             ),
-            dcc.Graph(
-                id='visu_4',
-                figure=get_figure(data=data[0], team=team),
-                style={'width': '70%', 'margin': '0 auto'}
-            ),
-            dcc.Graph(
-                id='bar_plot',  # Ajout de l'identifiant pour le graphique à barres
-                style={'width': '70%', 'margin': '0 auto'}
-            ),
-            html.Div(id='output-container-radio'),  # Ajouter un élément de sortie pour l'option sélectionnée
-            html.Div(id='output-container-map')  # Ajouter un élément de sortie pour la région sélectionnée sur la carte
-        ])
-    ]
+            html.Div(style={'display': 'flex'}, children=[
+                dcc.Graph(
+                    id='visu_4',
+                    figure=get_figure(data=data[0], team=team),
+                    style={'width': '30%'}  # Set the width of visu_4 to 30%
+                ),
+                html.Div(style={'width': '70%'}, children=[  # Set the width of the containing div to 70%
+                    dcc.Graph(
+                        id='bar_plot',  # Ajout de l'identifiant pour le graphique à barres
+                        style={'width': '100%'}  # Set the width of bar_plot to 100% to fill its container
+                    )
+                ])
+            ])
+        ]
 
 def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     
@@ -99,20 +98,20 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     return fig
 
 
-@app.callback(
-    Output('output-container-radio', 'children'),
-    [Input('criteria', 'value')]
-)
-def display_selected_option(value):
-    print( f"The selected option is: {value}")
-    if value == 'Attaque':
-        print("Voici les données d'attaque :")
-        print(data_copy[2])  
-    elif value == 'Défense':
-        print("Voici les données de défense :")
-        print(data_copy[3])  
-    else:
-        print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
+# @app.callback(
+#     Output('output-container-radio', 'children'),
+#     [Input('criteria', 'value')]
+# )
+# def display_selected_option(value):
+#     print( f"The selected option is: {value}")
+#     if value == 'Attaque':
+#         print("Voici les données d'attaque :")
+#         print(data_copy[2])  
+#     elif value == 'Défense':
+#         print("Voici les données de défense :")
+#         print(data_copy[3])  
+#     else:
+#         print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
 
 
 @app.callback(
@@ -121,7 +120,7 @@ def display_selected_option(value):
      Input('team-selector', 'value')]
 )
 def update_bar_plot(valeur, equipe):
-    print(equipe)   
+    #print(equipe)   
     moyennes_attaque = data_copy[2]
     moyennes_defense = data_copy[3]
     

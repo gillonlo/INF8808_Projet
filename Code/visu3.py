@@ -31,7 +31,7 @@ def get_section(data: pd.DataFrame, team: str) -> list:
                 {'label': '  Âge', 'value': 'Age'},
                 {'label': '  Fatigue', 'value': 'Fatigue'}
             ],
-            value='Score',
+            value='Age',
             labelStyle={'display': 'inline-block',
                         'margin-right': '10px'}
         ),
