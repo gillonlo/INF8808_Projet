@@ -127,7 +127,7 @@ def update_bar_plot(valeur, equipe):
     if valeur == 'Attaque':
         fig = go.Figure(data=[
             go.Bar(name='Buts marqués en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Gls90_Attack'], hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>"),
-            go.Bar(name='Passe décisive en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>"),
+            go.Bar(name='Passes décisives en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>"),
             go.Bar(name='Possession moyenne', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Poss_Attack'], hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>")
         ])
         fig.update_layout(barmode='group', title='Métriques moyennes pour l\'attaque par région')
