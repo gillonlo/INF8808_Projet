@@ -55,7 +55,7 @@ def update_output(selected_option: str) -> list:
 
 
 def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> dict:
-    scale = {'Score': [-0.5, 6],
+    scale = {'Score': [-0.5, 6.5],
              'Age': [15, 40],
              'Fatigue': [0, 101]}
 
