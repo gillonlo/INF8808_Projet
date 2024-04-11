@@ -99,8 +99,6 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     return fig
 
 
-
-
 @app.callback(
     Output('output-container-radio', 'children'),
     [Input('criteria', 'value')]
@@ -115,8 +113,6 @@ def display_selected_option(value):
         print(data_copy[3])  
     else:
         print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
-
-
 
 
 @app.callback(

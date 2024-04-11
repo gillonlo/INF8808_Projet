@@ -101,8 +101,8 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
             customdata=data[data['Squad'] == x][[
                 'Pos', 'Squad', 'Age', 'Fatigue']]
         ))
-        print(data[data['Squad'] == x][[
-            'Pos', 'Squad', 'Age', 'Fatigue']])
+        # print(data[data['Squad'] == x][[
+        #     'Pos', 'Squad', 'Age', 'Fatigue']])
     fig.update_layout(
         title=to_replace[phase],
         height=200,

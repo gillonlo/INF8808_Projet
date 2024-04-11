@@ -40,20 +40,20 @@ def update_output(selected_option: str) -> list:
             by=['Attack_Sum'], ascending=False).reset_index(drop=True)
         index = [i for i in range(len(new_data))
                  if new_data.iloc[i]['Squad'] == TEAM]
-        if index[0] <= 9:
+        if index[0] <= 8:
             index = [8]
-        categories = ['Passes tentées', 'Buts marqués',
-                      'Passes décisives', 'Buts sans pénalité']
+        categories = ['Possession', 'Buts marqués',
+                      'Passes décisives', 'Buts hors pénalty']
 
     else:
         new_data = DATA.sort_values(
             by=['Defense_Sum'], ascending=False).reset_index(drop=True)
         index = [i for i in range(len(new_data))
                  if new_data.iloc[i]['Squad'] == TEAM]
-        if index[0] <= 9:
+        if index[0] <= 8:
             index = [8]
-        categories = ['Passes adverses tentées', 'Buts reçus',
-                      'Passes décisives adverses', 'Buts sans pénalités reçus']
+        categories = ['Possession moy', 'Buts non reçus',
+                      'Passes adv. contrées', 'Buts hors pénalty non reçus']
     return [
         html.Div(
             [dcc.Graph(
@@ -71,11 +71,11 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
     squad_name = data['Squad']
 
     if criteria == 'Attaque':
-        values = data[['Passes tentées', 'Buts marqués',
-                       'Passes décisives', 'Buts sans pénalité']].tolist()
+        values = data[['Possession', 'Buts marqués',
+                       'Passes décisives', 'Buts hors pénalty']].tolist()
     else:
-        values = data[['Passes adverses tentées', 'Buts reçus',
-                       'Passes décisives adverses', 'Buts sans pénalités reçus']].tolist()
+        values = data[['Possession moy', 'Buts non reçus',
+                       'Passes adv. contrées', 'Buts hors pénalty non reçus']].tolist()
 
     if squad_name == team:
         color = 'rgba(255, 0, 0, 0.3)'
