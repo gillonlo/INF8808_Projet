@@ -76,7 +76,7 @@ def get_figure(data : pd.DataFrame, team : str) -> dict :
             trace.marker.color = 'red'
 
     # Update layout
-    fig.update_layout(title={'text': 'Tournament', 'x':0.5, 'y':0.95, 'xanchor': 'center', 'yanchor': 'top'},
+    fig.update_layout(title={'text': 'Tournois', 'x':0.5, 'y':0.95, 'xanchor': 'center', 'yanchor': 'top'},
                       plot_bgcolor='white',
                       showlegend=False)
     
