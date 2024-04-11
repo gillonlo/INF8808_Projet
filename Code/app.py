@@ -17,7 +17,7 @@ images = {
     'Cameroon': 'https://ipdata.co/flags/cm.png',
     'Cape Verde': 'https://ipdata.co/flags/cv.png',
     'Congo DR': 'https://ipdata.co/flags/cd.png',
-    'Côte dIvoire': 'https://ipdata.co/flags/ci.png',
+    "Côte d'Ivoire": 'https://ipdata.co/flags/ci.png',
     'Egypt': 'https://ipdata.co/flags/eg.png',
     'Equ. Guinea': 'https://ipdata.co/flags/gq.png',
     'Gambia': 'https://ipdata.co/flags/gm.png',
@@ -83,7 +83,8 @@ app.layout = html.Div([
     html.H1("Caractérisation des équipes de la Coupe d'Afrique de Nations (CAN)", style={'textAlign': 'center'}),
     dcc.Dropdown(
         id='team-selector',
-        options=[{'label': country, 'value': country} for country in data_init],
+        options=[{'label': html.Div([html.Img(src=images[country], style={'width': '20px', 'height': '10px', 'padding-right' :'5px'}), country]), 'value': country} for country in data_init],
+        #options=[{'label': country, 'value': country} for country in data_init],
         value="Côte d'Ivoire",
         style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
     ),
