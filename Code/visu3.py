@@ -38,11 +38,9 @@ def get_section(data: pd.DataFrame, team: str) -> list:
                 {'label': '  Fatigue', 'value': 'Fatigue'}
             ],
             value='Age',
-            labelStyle={'display': 'inline-block',
-                        'margin-right': '10px'}
+            labelStyle={'display': 'inline-block', 'margin-right': '10px'}
         ),
     ], style={'border': '1px solid #ccc', 'padding': '10px', 'display': 'inline-block', 'margin-left': '20%'}),
-
         html.Div(id='beeswarm')
     ]
 
@@ -75,8 +73,7 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
                 x=data[data['Squad'] == x][criteria],
                 y=[random.random()*20 for i in range(len(data[data['Squad'] == x][criteria]))],
                 mode='markers',
-                marker=dict(color='rgba(99, 110, 250, 255)', size=10,
-                            line=dict(color='rgb(6, 18, 117, 230)', width=1)),
+                marker=dict(color='rgba(99, 110, 250, 255)', size=10, line=dict(color='rgb(6, 18, 117, 230)', width=1)),
                 hoverinfo='text',
                 hovertemplate=overlay_template,
                 text=data[data['Squad'] == x]['Player'],
@@ -90,15 +87,13 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
             x=data[data['Squad'] == x][criteria],
             y=[random.random()*20 for i in range(len(data[data['Squad'] == x][criteria]))],
             mode='markers',
-            marker=dict(color='rgba(235, 0, 0, 255)', size=10,
-                        line=dict(color='rgb(255, 0, 0, 230)', width=1)),
+            marker=dict(color='rgba(235, 0, 0, 255)', size=10, line=dict(color='rgb(255, 0, 0, 230)', width=1)),
             hoverinfo='text',
             hovertemplate=overlay_template,
             text=data[data['Squad'] == x]['Player'],
             customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Score', 'Age', 'Fatigue']]
         ))
-        # print(data[data['Squad'] == x][[
-        #     'Pos', 'Squad', 'Age', 'Fatigue']])
+
     fig.update_layout(
         title=to_replace[phase],
         height=200,
