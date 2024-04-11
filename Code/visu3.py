@@ -17,6 +17,12 @@ to_replace = {0: 'Poule',
               4: 'Finale',
               5: 'Gagnant'}
 
+overlay_template = '<span style="font-size:20px">%{text}</span><br>' + '<br>' \
+            "<b>Position:</b> %{customdata[0]}<br>" \
+            "<b>Équipe:</b> %{customdata[1]}<br>" \
+            "<b>Score moyen:</b> %{customdata[2]:.2f} buts/assists<br>" \
+            "<b>Âge:</b> %{customdata[3]} ans<br>" \
+            "<b>Pourcentage de fatigue:</b> %{customdata[4]:.2f}%<extra></extra>"
 
 def get_section(data: pd.DataFrame, team: str) -> list:
     global DATA
@@ -72,14 +78,9 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
                 marker=dict(color='rgba(99, 110, 250, 255)', size=10,
                             line=dict(color='rgb(6, 18, 117, 230)', width=1)),
                 hoverinfo='text',
-                hovertemplate='<span style="font-size:20px">%{text}</span><br>' +
-                "<b>Position:</b> %{customdata[0]}<br>" +
-                "<b>Équipe:</b> %{customdata[1]}<br>" +
-                "<b>Âge:</b> %{customdata[2]} ans<br>" +
-                "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}%<extra></extra>",
+                hovertemplate=overlay_template,
                 text=data[data['Squad'] == x]['Player'],
-                customdata=data[data['Squad'] == x][[
-                    'Pos', 'Squad', 'Age', 'Fatigue']]
+                customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Score', 'Age', 'Fatigue']]
             ))
         else:
             trigger = 1
@@ -92,14 +93,9 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, phase: float) -> di
             marker=dict(color='rgba(235, 0, 0, 255)', size=10,
                         line=dict(color='rgb(255, 0, 0, 230)', width=1)),
             hoverinfo='text',
-            hovertemplate='<span style="font-size:20px">%{text}</span><br>' +
-            "<b>Position:</b> %{customdata[0]}<br>" +
-            "<b>Team:</b> %{customdata[1]}<br>" +
-            "<b>Age:</b> %{customdata[2]}<br>" +
-            "<b>Pourcentage de fatigue:</b> %{customdata[3]:.2f}<extra></extra>",
+            hovertemplate=overlay_template,
             text=data[data['Squad'] == x]['Player'],
-            customdata=data[data['Squad'] == x][[
-                'Pos', 'Squad', 'Age', 'Fatigue']]
+            customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Score', 'Age', 'Fatigue']]
         ))
         # print(data[data['Squad'] == x][[
         #     'Pos', 'Squad', 'Age', 'Fatigue']])
