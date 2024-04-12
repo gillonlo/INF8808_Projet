@@ -127,7 +127,7 @@ app.layout = html.Div([
 def update_graphs(selected_value):
     graphs = [
         html.Div([
-            html.P(descriptions[i], style={'textAlign': 'center'}),
+            html.P(descriptions[i], style={'textAlign': 'center', 'margin': '40px 120px 10px'}),
             html.Div(visu.get_section(data=all_data[i], team=selected_value), className=f'part_{i+1}')
         ]) for i, visu in enumerate([visu1, visu2, visu3, visu4])
     ]
