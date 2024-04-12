@@ -135,7 +135,7 @@ def update_bar_plot(valeur, equipe):
     
         fig = go.Figure(data=[
             go.Bar(name='Buts concédés en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Gls90_Defense'], hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>"),
-            go.Bar(name='Passe décisive concédée en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>"),
+            go.Bar(name='Passes décisives concédées en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>"),
             go.Bar(name='Possession concédée moyenne', x=moyennes_defense.index, y=moyennes_defense['Avg_Poss_Defense'], hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>")
         ]) 
         fig.update_layout(barmode='group', title='Métriques moyennes pour la défense par région')
