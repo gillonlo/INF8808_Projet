@@ -43,7 +43,8 @@ descriptions = [
         Le détail pour la 3e place est visible en survolant les équipes de la demi-finale.",
     "Voici le score moyen des équipes en terme de buts, buts sans pénalty, passes décisives et possession ramenés sur 90 minutes. \
         Vous pouvez choisir entre les critères d'attaque et de défense. \
-        Les équipes sont classées par ordre décroissant de score. On affiche les 8 meilleures et votre équipe sélectionnée. \
+        Les équipes sont classées par ordre décroissant de score. \
+        On affiche les 8 meilleures et votre équipe sélectionnée ou bien les 9 meilleures si votre équipe en fait partie. \
         Survolez une équipe pour voir son score détaillé.",
     "Voici la répartition des joueurs de chaque équipe par âge, score moyen et pourcentage de fatigue. \
         Vous pouvez choisir entre les critères de score, d'âge et de fatigue. \
