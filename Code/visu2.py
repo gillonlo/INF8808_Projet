@@ -83,6 +83,8 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
         color = 'rgba(223, 230, 224, 0.5)'
 
     fig = go.Figure()
+    
+    colors = ['#1f77b4', '#2ca02c', '#ffbb00', '#ff5733']
 
     # Add trace
     fig.add_trace(go.Barpolar(
@@ -91,6 +93,7 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
         name=squad_name,
         hoverinfo="text",
         hovertemplate="%{theta}<br>""%{r:.2f}<extra></extra>",
+        marker=dict(color=colors)
     ))
 
     fig.update_layout(
