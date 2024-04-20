@@ -63,7 +63,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     # Parcours de chaque région
     for region, countries in regions.items():
         # Couleur de la région
-        color = 'red' if region == selected_region else 'gray'
+        color = 'red' if region == selected_region else 'rgba(153,153,153,255)'
         # Création de la trace pour la région
         trace = go.Choropleth(
             locations=countries,
@@ -130,7 +130,7 @@ def update_bar_plot(valeur, equipe):
             go.Bar(name='Passes décisives en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>"),
             go.Bar(name='Possession moyenne', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Poss_Attack'], hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>")
         ])
-        fig.update_layout(barmode='group', title='Métriques moyennes pour l\'attaque par région')
+        fig.update_layout(barmode='group', title='Métriques moyennes pour l\'attaque par région', plot_bgcolor='rgba(239,242,240,255)')
     elif valeur == 'Défense':
     
         fig = go.Figure(data=[
@@ -138,7 +138,7 @@ def update_bar_plot(valeur, equipe):
             go.Bar(name='Passes décisives concédées en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>"),
             go.Bar(name='Possession concédée moyenne', x=moyennes_defense.index, y=moyennes_defense['Avg_Poss_Defense'], hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>")
         ]) 
-        fig.update_layout(barmode='group', title='Métriques moyennes pour la défense par région')
+        fig.update_layout(barmode='group', title='Métriques moyennes pour la défense par région', plot_bgcolor='rgba(239,242,240,255)')
     
     # Mettre en surbrillance la région sélectionnée en rouge
     if equipe:
