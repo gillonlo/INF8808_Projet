@@ -42,12 +42,12 @@ def get_data(data_teams_attack: pd.DataFrame,
 
 
     # Calculer les moyennes pour l'attaque
-    attack_means = data_teams_attack.groupby('Region')[['Gls90', 'Ast90', 'Poss']].mean()
-    attack_means.rename(columns={'Gls90': 'Avg_Gls90_Attack', 'Ast90': 'Avg_Ast90_Attack', 'Poss': 'Avg_Poss_Attack'}, inplace=True)
+    attack_means = data_teams_attack.groupby('Region')[['Gls90', 'Ast90', 'Poss','G-PK90']].mean()
+    attack_means.rename(columns={'Gls90': 'Avg_Gls90_Attack', 'Ast90': 'Avg_Ast90_Attack', 'Poss': 'Avg_Poss_Attack','G-PK90':'Avg_G-PK90_Attack'}, inplace=True)
 
     # Calculer les moyennes pour la défense
-    defense_means = data_teams_defense.groupby('Region')[['Gls90', 'Ast90', 'Poss']].mean()
-    defense_means.rename(columns={'Gls90': 'Avg_Gls90_Defense', 'Ast90': 'Avg_Ast90_Defense', 'Poss': 'Avg_Poss_Defense'}, inplace=True)
+    defense_means = data_teams_defense.groupby('Region')[['Gls90', 'Ast90', 'Poss','G-PK90']].mean()
+    defense_means.rename(columns={'Gls90': 'Avg_Gls90_Defense', 'Ast90': 'Avg_Ast90_Defense', 'Poss': 'Avg_Poss_Defense','G-PK90':'Avg_G-PK90_Defense'}, inplace=True)
 
     # Ramener la colonne 'Poss' à une échelle de 0 à 1
     attack_means['Avg_Poss_Attack'] /= 100
