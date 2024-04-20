@@ -4,7 +4,7 @@ import pandas as pd
 def get_data(data_teams_attack : pd.DataFrame, 
              data_players : pd.DataFrame, 
              data_tournament : pd.DataFrame, 
-             data_teams_defense : pd.DataFrame) -> pd.DataFrame :
+             data_teams_defense : pd.DataFrame) -> list[pd.DataFrame] :
     
     data_players = data_players.copy()
     data_tournament = data_tournament.copy()
@@ -36,5 +36,9 @@ def get_data(data_teams_attack : pd.DataFrame,
     merged_df = pd.merge(new_df_player, max_round, left_on='Squad', right_on='Team', how='outer')
     merged_df.drop('Team', axis=1, inplace=True)
     merged_df.fillna(0.0, inplace=True)
-        
-    return merged_df
+
+    # Ajout des opponents
+    #print(data_tournament)
+    adv = pd.concat([data_tournament, data_tournament.rename(columns={'Team1': 'Team2', 'Team2': 'Team1'})], ignore_index=True)[['Round','Team1', 'Team2']].sort_values(by='Round')
+    
+    return [merged_df, adv]
