@@ -42,12 +42,23 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     
     # Définition des régions avec les pays associés
     regions = {
-        "Nord": ["Morocco", "Algeria", "Tunisia", "Egypt", "Libya"],
-        "Est": ["Sudan", "South Sudan", "Ethiopia", "Somalia", "Kenya", "Uganda", "Rwanda", "Burundi", "Tanzania", "Djibouti", "Eritrea"],
-        "Ouest": ["Mauritania", "Mali", "Niger", "Nigeria", "Chad", "Senegal", "Gambia", "Guinea-Bissau", "Guinea", "Sierra Leone", "Liberia", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Benin"],
-        "Centrale": ["Cameroon", "Central African Republic", "Chad", "Congo DR", "Congo", "Gabon", "Equ. Guinea", "Sao Tome and Principe"],
-        "Australe": ["Angola", "Zambia", "Zimbabwe", "Malawi", "Botswana", "Namibia", "South Africa", "Lesotho", "Swaziland", "Madagascar"]
+        "Nord": ["Maroc", "Algérie", "Tunisi", "Égypte", "Libie"],
+        "Est": ["Soudan", "Soudan du Sud", "Éthiopie", "Somalie", "Kénya", "Ouganda", "Rwanda", "Burundi", "Tanzanie", "Djibouti", "Érythrée"],
+        "Ouest": ["Mauritanie", "Mali", "Niger", "Nigéria", "Chad", "Sénégal", "Gambie", "Guinée-Bissau", "Guinée", "Sierra Leone", "Libéria", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Bénin"],
+        "Centrale": ["Cameroun", "République centrafricaine", "Chad", "RD Congo", "Congo", "Gabon", "Guinée Equ.", "Sao Tomé et Principe"],
+        "Australe": ["Angola", "Zambie", "Zimbabwe", "Malawi", "Botswana", "Namibie", "Afrique du Sud", "Lesotho", "Swaziland", "Madagascar"]
     }
+    
+    """
+    regions = {
+        "Nord": ["Maroc", "Algérie", "Tunisi", "Égypte", "Libie"],
+        "Est": ["Soudan", "Soudan du Sud", "Éthiopie", "Somalie", "Kénya", "Ouganda", "Rwanda", "Burundi", "Tanzanie", "Djibouti", "Érythrée"],
+        "Ouest": ["Mauritanie", "Mali", "Niger", "Nigéria", "Chad", "Sénégal", "Gambie", "Guinée-Bissau", "Guinée", "Sierra Leone", "Libéria", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Bénin"],
+        "Centrale": ["Cameroun", "République centrafricaine", "Chad", "RD Congo", "Congo", "Gabon", "Guinée Equ.", "Sao Tomé et Principe"],
+        "Australe": ["Angola", "Zambie", "Zimbabwe", "Malawi", "Botswana", "Namibie", "Afrique du Sud", "Lesotho", "Swaziland", "Madagascar"]
+    }
+
+    """
 
     # Récupération de la région du pays sélectionné
     selected_region = data[data['Squad'] == team]['Region'].iloc[0]
