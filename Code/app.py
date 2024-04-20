@@ -75,6 +75,8 @@ import Code.visu2_pretraitement as visu2_pretraitement
 import Code.visu3_pretraitement as visu3_pretraitement
 import Code.visu4_pretraitement as visu4_pretraitement
 
+import Code.methodologie as meth
+
 # Prétraitement
 df_1 = pd.read_csv("Data/projet_data_1.csv", delimiter=';')
 df_2 = pd.read_csv("Data/projet_data_2.csv", delimiter=',')
@@ -106,7 +108,7 @@ all_data = [data_1, data_2, data_3, data_4]
 
 
 # Define the layout of the dashboard
-app.layout = html.Div([
+layout_home = html.Div([
     html.H1("Caractérisation des équipes de la Coupe d'Afrique des Nations (CAN)", style={'textAlign': 'center'}),
     html.P("Sélectionnez une équipe pour voir ses caractéristiques:", style={'textAlign': 'center'}),
     dcc.Dropdown(
@@ -117,7 +119,29 @@ app.layout = html.Div([
         style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
     ),
     html.Div(id='visu-container'),
+    html.Div(
+        dcc.Link('Précision sur notre démarche', href='/methodologie'),
+        style={'padding' : '10px','textAlign': 'center'}
+    )
 ])
+
+layout_methodologie = meth.get_page()
+
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
+])
+
+# Callback to update the page content based on the URL
+@app.callback(Output('page-content', 'children'),
+              [Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == '/':
+        return layout_home
+    elif pathname == '/methodologie':
+        return layout_methodologie
+    else:
+        return '404 Page Not Found'
 
 
 # Define callback to update the graphs based on the selected value
