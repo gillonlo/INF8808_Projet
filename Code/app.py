@@ -122,6 +122,10 @@ layout_home = html.Div([
     html.Div(
         dcc.Link('Précision sur notre démarche', href='/methodologie'),
         style={'padding' : '10px','textAlign': 'center'}
+    ),
+    html.Div(
+        html.A('Nos données', href='https://github.com/gillonlo/INF8808_Projet/tree/main/Data'),
+        style={'padding' : '10px','textAlign': 'center'}
     )
 ])
 
