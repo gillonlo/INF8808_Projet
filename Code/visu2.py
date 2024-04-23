@@ -83,33 +83,31 @@ def get_figure(data: pd.DataFrame, team: str, criteria: str, categories: list[st
         color = 'rgba(223, 230, 224, 0.5)'
 
     fig = go.Figure()
-    
+
     colors = ['#1f77b4', '#2ca02c', '#ffbb00', '#ff5733']
 
-    # Add trace
     fig.add_trace(go.Barpolar(
         r=values,
         theta=categories,
         name=squad_name,
         hoverinfo="text",
-        hovertemplate="%{theta}<br>""%{r:.2f}<extra></extra>",
+        hovertemplate="%{theta}:<br>""%{r:.2f}<extra></extra>",
         marker=dict(color=colors)
     ))
 
     fig.update_layout(
-        # Adding a title to the chart
         title=str(classement+1)+' : '+squad_name,
         polar=dict(
             radialaxis=dict(
                 range=[0, 2.5],
                 visible=True,
                 tickmode='array',
-                tickvals=[0, 0.5, 1, 1.5, 2, 2.5],  # Adjust this as needed
-                ticktext=[0, 0.5, 1, 1.5, 2, 2.5]  # Adjust this as needed
+                tickvals=[0, 0.5, 1, 1.5, 2, 2.5],
+                ticktext=[0, 0.5, 1, 1.5, 2, 2.5]
             ),
             bgcolor=color
         ),
-        title_x=0.5,  # Centering the title horizontally
+        title_x=0.5,
     )
 
     return fig
