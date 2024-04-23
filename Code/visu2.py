@@ -43,7 +43,7 @@ def update_output(selected_option: str) -> list:
         if index[0] <= 8:
             index = [8]
         categories = ['Possession', 'Buts marqués',
-                      'Passes décisives', 'Buts hors pénalty']
+                      'Passes décisives', 'Buts hors<br>pénalty']
 
     else:
         new_data = DATA.sort_values(
@@ -53,7 +53,7 @@ def update_output(selected_option: str) -> list:
         if index[0] <= 8:
             index = [8]
         categories = ['Possession moy', 'Buts non reçus',
-                      'Passes adv. contrées', 'Buts hors pénalty non reçus']
+                      'Passes adv.<br>contrées', 'Buts hors<br>pénalty<br>non reçus']
     return [
         html.Div(
             [dcc.Graph(
