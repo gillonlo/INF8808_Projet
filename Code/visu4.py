@@ -137,19 +137,24 @@ def update_bar_plot(valeur, equipe):
     
     if valeur == 'Attaque':
         fig = go.Figure(data=[
-            go.Bar(name='Buts marqués en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Gls90_Attack'], hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>",marker=dict(color='#2ca02c')),
+            go.Bar(name='Buts marqués en moyenne<br>par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Gls90_Attack'], hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>",marker=dict(color='#2ca02c')),
             go.Bar(name='Possession moyenne', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Poss_Attack'], hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>",marker=dict(color='#1f77b4')),
-            go.Bar(name='Buts hors penalty marqués en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_G-PK90_Attack'], hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>",marker=dict(color='#ff5733')),
-            go.Bar(name='Passes décisives en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>",marker=dict(color='#ffbb00')),
+            go.Bar(name='Buts hors penalty marqués en moyenne<br>par 90 minutes', x=moyennes_attaque.index,
+                   y=moyennes_attaque['Avg_G-PK90_Attack'], hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>", marker=dict(color='#ff5733')),
+            go.Bar(name='Passes décisives en moyenne<br>par 90 minutes', x=moyennes_attaque.index,
+                   y=moyennes_attaque['Avg_Ast90_Attack'], hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>", marker=dict(color='#ffbb00')),
         ])
         fig.update_layout(barmode='group', title='Métriques moyennes pour l\'attaque par région', plot_bgcolor='rgba(239,242,240,255)')
     elif valeur == 'Défense':
     
         fig = go.Figure(data=[
-            go.Bar(name='Buts concédés en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Gls90_Defense'], hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>",marker=dict(color='#2ca02c')),
+            go.Bar(name='Buts concédés en moyenne<br>par 90 minutes', x=moyennes_defense.index,
+                   y=moyennes_defense['Avg_Gls90_Defense'], hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>", marker=dict(color='#2ca02c')),
             go.Bar(name='Possession concédée moyenne', x=moyennes_defense.index, y=moyennes_defense['Avg_Poss_Defense'], hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>",marker=dict(color='#1f77b4')),
-            go.Bar(name='Buts hors penalty concédés en moyenne par 90 minutes', x=moyennes_attaque.index, y=moyennes_defense['Avg_G-PK90_Defense'], hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>",marker=dict(color='#ff5733')),
-            go.Bar(name='Passes décisives concédées en moyenne par 90 minutes', x=moyennes_defense.index, y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>",marker=dict(color='#ffbb00')),
+            go.Bar(name='Buts hors penalty concédés en moyenne<br>par 90 minutes', x=moyennes_attaque.index,
+                   y=moyennes_defense['Avg_G-PK90_Defense'], hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>", marker=dict(color='#ff5733')),
+            go.Bar(name='Passes décisives concédées en moyenne<br>par 90 minutes', x=moyennes_defense.index,
+                   y=moyennes_defense['Avg_Ast90_Defense'], hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>", marker=dict(color='#ffbb00')),
         ])  
         fig.update_layout(barmode='group', title='Métriques moyennes pour la défense par région', plot_bgcolor='rgba(239,242,240,255)')
     
