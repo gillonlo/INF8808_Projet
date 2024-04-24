@@ -202,7 +202,7 @@ Contributions are welcome! Here are several ways you can contribute:
 
 ##  License
 
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+This project is protected under the GNU AGPLv3 License. For more details, refer to the [LICENSE](https://github.com/gillonlo/INF8808_Projet/blob/main/license.txt) file.
 
 ---
 
