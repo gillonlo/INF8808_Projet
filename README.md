@@ -24,7 +24,7 @@
 </p>
 
 <br><!-- TABLE OF CONTENTS -->
-<details>
+<details open>
   <summary>Table of Contents</summary><br>
 
 - [ Overview](#-overview)
@@ -123,7 +123,7 @@ How to explain Ivory Coast's victory? What are the criteria explaining the super
 
 **System Requirements:**
 
-* **Python**: `version x.y.z`
+* **Python**: `version 3.9.12`
 
 ###  Installation
 
@@ -169,7 +169,7 @@ Contributions are welcome! Here are several ways you can contribute:
 1. **Fork the Repository**: Start by forking the project repository to your local account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone ../.
+   git clone https://github.com/gillonlo/INF8808_Projet.git
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
