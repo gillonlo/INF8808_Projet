@@ -11,30 +11,30 @@ import plotly.express as px
 server = app.server
 
 images = {
-    'Algérie': 'https://ipdata.co/flags/dz.png',
-    'Angola': 'https://ipdata.co/flags/ao.png',
-    'Burkina Faso': 'https://ipdata.co/flags/bf.png',
-    'Cameroun': 'https://ipdata.co/flags/cm.png',
-    'Cap Vert': 'https://ipdata.co/flags/cv.png',
-    'RD Congo': 'https://ipdata.co/flags/cd.png',
-    "Côte d'Ivoire": 'https://ipdata.co/flags/ci.png',
-    'Égypte': 'https://ipdata.co/flags/eg.png',
-    'Guinée Equ.': 'https://ipdata.co/flags/gq.png',
-    'Gambie': 'https://ipdata.co/flags/gm.png',
-    'Ghana': 'https://ipdata.co/flags/gh.png',
-    'Guinée': 'https://ipdata.co/flags/gn.png',
-    'Guinée-Bissau': 'https://ipdata.co/flags/gw.png',
-    'Mali': 'https://ipdata.co/flags/ml.png',
-    'Mauritanie': 'https://ipdata.co/flags/mr.png',
-    'Maroc': 'https://ipdata.co/flags/ma.png',
-    'Mozambique': 'https://ipdata.co/flags/mz.png',
-    'Namibie': 'https://ipdata.co/flags/na.png',
-    'Nigéria': 'https://ipdata.co/flags/ng.png',
-    'Sénégal': 'https://ipdata.co/flags/sn.png',
-    'Afrique du Sud': 'https://ipdata.co/flags/za.png',
-    'Tanzanie': 'https://ipdata.co/flags/tz.png',
-    'Tunisie': 'https://ipdata.co/flags/tn.png',
-    'Zambie': 'https://ipdata.co/flags/zm.png',
+    "Algérie": "https://ipdata.co/flags/dz.png",
+    "Angola": "https://ipdata.co/flags/ao.png",
+    "Burkina Faso": "https://ipdata.co/flags/bf.png",
+    "Cameroun": "https://ipdata.co/flags/cm.png",
+    "Cap Vert": "https://ipdata.co/flags/cv.png",
+    "RD Congo": "https://ipdata.co/flags/cd.png",
+    "Côte d'Ivoire": "https://ipdata.co/flags/ci.png",
+    "Égypte": "https://ipdata.co/flags/eg.png",
+    "Guinée Equ.": "https://ipdata.co/flags/gq.png",
+    "Gambie": "https://ipdata.co/flags/gm.png",
+    "Ghana": "https://ipdata.co/flags/gh.png",
+    "Guinée": "https://ipdata.co/flags/gn.png",
+    "Guinée-Bissau": "https://ipdata.co/flags/gw.png",
+    "Mali": "https://ipdata.co/flags/ml.png",
+    "Mauritanie": "https://ipdata.co/flags/mr.png",
+    "Maroc": "https://ipdata.co/flags/ma.png",
+    "Mozambique": "https://ipdata.co/flags/mz.png",
+    "Namibie": "https://ipdata.co/flags/na.png",
+    "Nigéria": "https://ipdata.co/flags/ng.png",
+    "Sénégal": "https://ipdata.co/flags/sn.png",
+    "Afrique du Sud": "https://ipdata.co/flags/za.png",
+    "Tanzanie": "https://ipdata.co/flags/tz.png",
+    "Tunisie": "https://ipdata.co/flags/tn.png",
+    "Zambie": "https://ipdata.co/flags/zm.png",
 }
 
 descriptions = [
@@ -53,7 +53,7 @@ descriptions = [
         La fatigue d'un joueur correspond au temps total passé sur le terrain ramené sur 90 minutes. \
             Ainsi, un joueur ayant 80% en fatigue aura passé 80% de son temps de jeu sur le terrain. \
         Les joueurs sont répartis par avancée de leur équipe dans la compétition. \
-        Survolez un point pour voir le détail du joueur.",     
+        Survolez un point pour voir le détail du joueur.",
     "Voici la répartition des équipes par région d'Afrique. \
         Il y a 5 régions : Nord, Est, Ouest, Centrale et Australe. \
         Sur la carte, la région en rouge correspond à la région de votre pays sélectionné. \
@@ -61,8 +61,8 @@ descriptions = [
         Sur le graphique en barres, vous pouvez voir le total de buts marqués, passes décisives et possessions par région d'Afrique. \
         Vous pouvez choisir entre les critères d'attaque et de défense. \
         Vous pouvez sélectionner et désélectionner des types d'action en cliquant sur les éléments de la légende. \
-        La région encadrée en rouge correspond à la région de votre pays sélectionné."
-    ]
+        La région encadrée en rouge correspond à la région de votre pays sélectionné.",
+]
 
 import Code.visu1 as visu1
 import Code.visu2 as visu2
@@ -78,94 +78,134 @@ import Code.visu4_pretraitement as visu4_pretraitement
 import Code.methodologie as meth
 
 # Prétraitement
-df_1 = pd.read_csv("Data/projet_data_1.csv", delimiter=';')
-df_2 = pd.read_csv("Data/projet_data_2.csv", delimiter=',')
-df_3 = pd.read_csv("Data/projet_data_3.csv", delimiter=';')
-df_4 = pd.read_csv("Data/projet_data_4.csv", delimiter=';')
+df_1 = pd.read_csv("Data/projet_data_1.csv", delimiter=";")
+df_2 = pd.read_csv("Data/projet_data_2.csv", delimiter=",")
+df_3 = pd.read_csv("Data/projet_data_3.csv", delimiter=";")
+df_4 = pd.read_csv("Data/projet_data_4.csv", delimiter=";")
 
-data_init = init_pretraitement.get_data(data_teams_attack=df_1,
-                                        data_players=df_2,
-                                        data_tournament=df_3,
-                                        data_teams_defense=df_4) 
-data_1 = visu1_pretraitement.get_data(data_teams_attack=df_1,
-                                        data_players=df_2,
-                                        data_tournament=df_3,
-                                        data_teams_defense=df_4) 
-data_2 = visu2_pretraitement.get_data(data_teams_attack=df_1,
-                                        data_players=df_2,
-                                        data_tournament=df_3,
-                                        data_teams_defense=df_4) 
-data_3 = visu3_pretraitement.get_data(data_teams_attack=df_1,
-                                        data_players=df_2,
-                                        data_tournament=df_3,
-                                        data_teams_defense=df_4) 
-data_4 = visu4_pretraitement.get_data(data_teams_attack=df_1,
-                                        data_players=df_2,
-                                        data_tournament=df_3,
-                                        data_teams_defense=df_4) 
+data_init = init_pretraitement.get_data(
+    data_teams_attack=df_1,
+    data_players=df_2,
+    data_tournament=df_3,
+    data_teams_defense=df_4,
+)
+data_1 = visu1_pretraitement.get_data(
+    data_teams_attack=df_1,
+    data_players=df_2,
+    data_tournament=df_3,
+    data_teams_defense=df_4,
+)
+data_2 = visu2_pretraitement.get_data(
+    data_teams_attack=df_1,
+    data_players=df_2,
+    data_tournament=df_3,
+    data_teams_defense=df_4,
+)
+data_3 = visu3_pretraitement.get_data(
+    data_teams_attack=df_1,
+    data_players=df_2,
+    data_tournament=df_3,
+    data_teams_defense=df_4,
+)
+data_4 = visu4_pretraitement.get_data(
+    data_teams_attack=df_1,
+    data_players=df_2,
+    data_tournament=df_3,
+    data_teams_defense=df_4,
+)
 
 all_data = [data_1, data_2, data_3, data_4]
 
 
 # Define the layout of the dashboard
-layout_home = html.Div([
-    html.H1("Caractérisation des équipes de la Coupe d'Afrique des Nations (CAN)", style={'textAlign': 'center'}),
-    html.P("Sélectionnez une équipe pour voir ses caractéristiques:", style={'textAlign': 'center'}),
-    dcc.Dropdown(
-        id='team-selector',
-        options=[{'label': html.Div([html.Img(src=images[country], style={'width': '20px', 'height': '10px', 'padding-right' :'5px'}), country]), 'value': country} for country in data_init],
-        #options=[{'label': country, 'value': country} for country in data_init],
-        value="Côte d'Ivoire",
-        style={'width': '50%', 'margin': '20px auto', 'textAlign': 'center'}
-    ),
-    html.Div(id='visu-container'),
-    html.Div(
-        dcc.Link('Précision sur notre démarche', href='/methodologie'),
-        style={'padding' : '10px','textAlign': 'center'}
-    ),
-    html.Div(
-        html.A('Nos données', href='https://github.com/gillonlo/INF8808_Projet/tree/main/Data'),
-        style={'padding' : '10px','textAlign': 'center'}
-    )
-])
+layout_home = html.Div(
+    [
+        html.H1(
+            "Caractérisation des équipes de la Coupe d'Afrique des Nations (CAN)",
+            style={"textAlign": "center"},
+        ),
+        html.P(
+            "Sélectionnez une équipe pour voir ses caractéristiques:",
+            style={"textAlign": "center"},
+        ),
+        dcc.Dropdown(
+            id="team-selector",
+            options=[
+                {
+                    "label": html.Div(
+                        [
+                            html.Img(
+                                src=images[country],
+                                style={
+                                    "width": "20px",
+                                    "height": "10px",
+                                    "padding-right": "5px",
+                                },
+                            ),
+                            country,
+                        ]
+                    ),
+                    "value": country,
+                }
+                for country in data_init
+            ],
+            # options=[{'label': country, 'value': country} for country in data_init],
+            value="Côte d'Ivoire",
+            style={"width": "50%", "margin": "20px auto", "textAlign": "center"},
+        ),
+        html.Div(id="visu-container"),
+        html.Div(
+            dcc.Link("Précision sur notre démarche", href="/methodologie"),
+            style={"padding": "10px", "textAlign": "center"},
+        ),
+        html.Div(
+            html.A(
+                "Nos données",
+                href="https://github.com/gillonlo/INF8808_Projet/tree/main/Data",
+            ),
+            style={"padding": "10px", "textAlign": "center"},
+        ),
+    ]
+)
 
 layout_methodologie = meth.get_page()
 
-app.layout = html.Div([
-    dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
-])
+app.layout = html.Div(
+    [dcc.Location(id="url", refresh=False), html.Div(id="page-content")]
+)
 
 # Callback to update the page content based on the URL
-@app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
+@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    if pathname == '/':
+    if pathname == "/":
         return layout_home
-    elif pathname == '/methodologie':
+    elif pathname == "/methodologie":
         return layout_methodologie
     else:
-        return '404 Page Not Found'
+        return "404 Page Not Found"
 
 
 # Define callback to update the graphs based on the selected value
-@app.callback(
-    Output('visu-container', 'children'),
-    [Input('team-selector', 'value')]
-)
+@app.callback(Output("visu-container", "children"), [Input("team-selector", "value")])
 def update_graphs(selected_value):
     graphs = [
-        html.Div([
-            html.P(descriptions[i], style={'textAlign': 'center', 'margin': '40px 120px 10px'}),
-            html.Div(visu.get_section(data=all_data[i], team=selected_value), className=f'part_{i+1}')
-        ]) for i, visu in enumerate([visu1, visu2, visu3, visu4])
+        html.Div(
+            [
+                html.P(
+                    descriptions[i],
+                    style={"textAlign": "center", "margin": "40px 120px 10px"},
+                ),
+                html.Div(
+                    visu.get_section(data=all_data[i], team=selected_value),
+                    className=f"part_{i+1}",
+                ),
+            ]
+        )
+        for i, visu in enumerate([visu1, visu2, visu3, visu4])
     ]
     return graphs
 
-@app.callback(
-    Output('visu_1', 'figure'),
-    [Input('team-selector', 'value')]
-)
+
+@app.callback(Output("visu_1", "figure"), [Input("team-selector", "value")])
 def update_graphs(selected_value):
     return visu1.get_figure(data=data_1, team=selected_value)
-
