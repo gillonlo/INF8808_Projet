@@ -22,21 +22,22 @@
 	<img src="https://img.shields.io/badge/Gunicorn-499848.svg?style=default&logo=Gunicorn&logoColor=white" alt="Gunicorn">
 	<img src="https://img.shields.io/badge/Flask-000000.svg?style=default&logo=Flask&logoColor=white" alt="Flask">
 </p>
+<p align="center">Link to the online dashboard : <a href="https://inf8808-projet-6yd6.onrender.com">Projet INF8808 Render</a></p>
 
 <br><!-- TABLE OF CONTENTS -->
 <details open>
   <summary>Table of Contents</summary><br>
 
-- [ Overview](#-overview)
-- [ Main goals](#-main-goals)
-- [ Repository Structure](#-repository-structure)
-- [ Modules](#-modules)
-- [ Getting Started](#-getting-started)
-  - [ Installation](#-installation)
-  - [ Usage](#-usage)
-- [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Acknowledgments](#-acknowledgments)
+- [ Overview](#overview)
+- [ Main goals](#main-goals)
+- [ Repository Structure](#repository-structure)
+- [ Modules](#modules)
+- [ Getting Started](#getting-started)
+  - [ Installation](#installation)
+  - [ Usage](#usage)
+- [ Contributing](#contributing)
+- [ License](#license)
+- [ Acknowledgments](#acknowledgments)
 </details>
 <hr>
 
