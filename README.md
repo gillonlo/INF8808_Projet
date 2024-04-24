@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" alt="project-logo">
+  <img src="https://www.shutterstock.com/image-vector/amman-jordan-22-december-africa-260nw-2404068983.jpg" width="100" alt="project-logo">
 </p>
 <p align="center">
-    <h1 align="center">.</h1>
+    <h1 align="center">Projet INF8808</h1>
 </p>
 <p align="center">
-    <em><code>► INSERT-TEXT-HERE</code></em>
+    <em><code>CAF - Africa Cup of Nations</code></em>
 </p>
 <p align="center">
 	<!-- local repository, no metadata badges. -->
@@ -14,12 +14,12 @@
 		<em>Developed with the software and tools below.</em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/badge/Gunicorn-499848.svg?style=default&logo=Gunicorn&logoColor=white" alt="Gunicorn">
-	<img src="https://img.shields.io/badge/Plotly-3F4F75.svg?style=default&logo=Plotly&logoColor=white" alt="Plotly">
 	<img src="https://img.shields.io/badge/Python-3776AB.svg?style=default&logo=Python&logoColor=white" alt="Python">
-	<img src="https://img.shields.io/badge/pandas-150458.svg?style=default&logo=pandas&logoColor=white" alt="pandas">
+	<img src="https://img.shields.io/badge/pandas-150458.svg?style=default&logo=pandas&logoColor=white" alt="Pandas">
 	<img src="https://img.shields.io/badge/NumPy-013243.svg?style=default&logo=NumPy&logoColor=white" alt="NumPy">
+	<img src="https://img.shields.io/badge/Plotly-3F4F75.svg?style=default&logo=Plotly&logoColor=white" alt="Plotly">
 	<img src="https://img.shields.io/badge/Dash-008DE4.svg?style=default&logo=Dash&logoColor=white" alt="Dash">
+	<img src="https://img.shields.io/badge/Gunicorn-499848.svg?style=default&logo=Gunicorn&logoColor=white" alt="Gunicorn">
 	<img src="https://img.shields.io/badge/Flask-000000.svg?style=default&logo=Flask&logoColor=white" alt="Flask">
 </p>
 
@@ -28,14 +28,12 @@
   <summary>Table of Contents</summary><br>
 
 - [ Overview](#-overview)
-- [ Features](#-features)
+- [ Main goals](#-main-goals)
 - [ Repository Structure](#-repository-structure)
 - [ Modules](#-modules)
 - [ Getting Started](#-getting-started)
   - [ Installation](#-installation)
   - [ Usage](#-usage)
-  - [ Tests](#-tests)
-- [ Project Roadmap](#-project-roadmap)
 - [ Contributing](#-contributing)
 - [ License](#-license)
 - [ Acknowledgments](#-acknowledgments)
@@ -44,13 +42,13 @@
 
 ##  Overview
 
-<code>► INSERT-TEXT-HERE</code>
+<code>The Africa Cup of Nations is a football sports event organized every two years by the Confederation of African Football. In 2023, this event brought together 24 teams from the African continent, pre-selected for the final phases. The competition took place in January 2024, but it was designated as the 2023 Africa Cup of Nations. SportsAI, a Canadian company specialized in sports data visualization, with whom we are collaborating on this project, has provided us with access to various statistics on the matches that took place. We will present these statistics in the following sections of this introductory report.</code>
 
 ---
 
-##  Features
+##  Main goals
 
-<code>► INSERT-TEXT-HERE</code>
+<code>How to explain Ivory Coast's victory? What are the criteria explaining the superiority of this team in the context of the Africa Cup of Nations? These two questions involve different sub-goals: characterizing the teams in the competition, analyzing the journey of each team, and identifying their strengths and weaknesses. The general goal of our visualization is to easily compare teams based on performance criteria, which we will determine in collaboration with SportsAI.</code>
 
 ---
 
@@ -95,8 +93,8 @@
 
 | File                                 | Summary                         |
 | ---                                  | ---                             |
-| [server.py](server.py)               | <code>► INSERT-TEXT-HERE</code> |
-| [requirements.txt](requirements.txt) | <code>► INSERT-TEXT-HERE</code> |
+| [server.py](server.py)               | <code>This Python script contains a Flask server to run a web application using Dash, with a failsafe mechanism implemented.</code> |
+| [requirements.txt](requirements.txt) | <code>Requirements to install before execution</code> |
 
 </details>
 
@@ -104,27 +102,18 @@
 
 | File                                                  | Summary                         |
 | ---                                                   | ---                             |
+| [app.py](Code/app.py)                                 | <code>► INSERT-TEXT-HERE</code> |
+| [app_init.py](Code/app_init.py)                       | <code>► INSERT-TEXT-HERE</code> |
 | [init_pretraitement.py](Code/init_pretraitement.py)   | <code>► INSERT-TEXT-HERE</code> |
+| [visu1_pretraitement.py](Code/visu1_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
+| [visu1.py](Code/visu1.py)                             | <code>► INSERT-TEXT-HERE</code> |
 | [visu2_pretraitement.py](Code/visu2_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
 | [visu2.py](Code/visu2.py)                             | <code>► INSERT-TEXT-HERE</code> |
 | [visu3_pretraitement.py](Code/visu3_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
 | [visu3.py](Code/visu3.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [visu4.py](Code/visu4.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [app_init.py](Code/app_init.py)                       | <code>► INSERT-TEXT-HERE</code> |
-| [methodologie.py](Code/methodologie.py)               | <code>► INSERT-TEXT-HERE</code> |
-| [visu1.py](Code/visu1.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [app.py](Code/app.py)                                 | <code>► INSERT-TEXT-HERE</code> |
 | [visu4_pretraitement.py](Code/visu4_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-| [visu1_pretraitement.py](Code/visu1_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>Data</summary>
-
-| File                                                            | Summary                         |
-| ---                                                             | ---                             |
-| [delete_first_letters_csv.py](Data/delete_first_letters_csv.py) | <code>► INSERT-TEXT-HERE</code> |
-| [graph_distribution.py](Data/graph_distribution.py)             | <code>► INSERT-TEXT-HERE</code> |
+| [visu4.py](Code/visu4.py)                             | <code>► INSERT-TEXT-HERE</code> |
+| [methodologie.py](Code/methodologie.py)               | <code>► INSERT-TEXT-HERE</code> |
 
 </details>
 
@@ -140,15 +129,15 @@
 
 <h4>From <code>source</code></h4>
 
-> 1. Clone the . repository:
+> 1. Clone the INF8808_Projet repository:
 >
 > ```console
-> $ git clone ../.
+> $ git clone https://github.com/gillonlo/INF8808_Projet.git
 > ```
 >
 > 2. Change to the project directory:
 > ```console
-> $ cd .
+> $ cd INF8808_Projet
 > ```
 >
 > 3. Install the dependencies:
@@ -160,25 +149,10 @@
 
 <h4>From <code>source</code></h4>
 
-> Run . using the command below:
+> Run server using the command below:
 > ```console
-> $ python main.py
+> $ python server.py
 > ```
-
-###  Tests
-
-> Run the test suite using the command below:
-> ```console
-> $ pytest
-> ```
-
----
-
-##  Project Roadmap
-
-- [X] `► INSERT-TASK-1`
-- [ ] `► INSERT-TASK-2`
-- [ ] `► ...`
 
 ---
 
@@ -219,7 +193,7 @@ Contributions are welcome! Here are several ways you can contribute:
 <summary>Contributor Graph</summary>
 <br>
 <p align="center">
-   <a href="https://local{//}graphs/contributors">
+   <a href="https://github.com/gillonlo/INF8808_Projet{//}graphs/contributors">
       <img src="https://contrib.rocks/image?repo=">
    </a>
 </p>
@@ -235,7 +209,7 @@ This project is protected under the [SELECT-A-LICENSE](https://choosealicense.co
 
 ##  Acknowledgments
 
-- List any resources, contributors, inspiration, etc. here.
+- Théau Lepouttre, Marouane Oudada, Louis Gillon, Carrie Kam, Laurène Ralay, Laure-Anne Réau
 
 [**Return**](#-overview)
 
