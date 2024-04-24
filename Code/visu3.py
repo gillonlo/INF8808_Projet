@@ -112,14 +112,14 @@ def get_figure(data_list: list[pd.DataFrame], team: str, criteria: str, phase: f
 
     if trigger is not None:
         fig.add_trace(go.Scatter(
-            x=data[data['Squad'] == x][criteria],
-            y=[random.random()*20 for i in range(len(data[data['Squad'] == x][criteria]))],
+            x=data[data['Squad'] == team][criteria],
+            y=[random.random()*20 for i in range(len(data[data['Squad'] == team][criteria]))],
             mode='markers',
             marker=dict(color='rgba(255, 0, 0, 255)', size=10, line=dict(color='rgb(200, 0, 0, 255)', width=1)),
             hoverinfo='text',
             hovertemplate=overlay_template,
-            text=data[data['Squad'] == x]['Player'],
-            customdata=data[data['Squad'] == x][['Pos', 'Squad', 'Score', 'Age', 'Fatigue']]
+            text=data[data['Squad'] == team]['Player'],
+            customdata=data[data['Squad'] == team][['Pos', 'Squad', 'Score', 'Age', 'Fatigue']]
         ))
 
     fig.update_layout(
