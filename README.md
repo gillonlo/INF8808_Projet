@@ -89,7 +89,7 @@ How to explain Ivory Coast's victory? What are the criteria explaining the super
 
 ##  Modules
 
-<details closed><summary>.</summary>
+<details open><summary>.</summary>
 
 | File                                 | Summary                         |
 | ---                                  | ---                             |
@@ -98,7 +98,7 @@ How to explain Ivory Coast's victory? What are the criteria explaining the super
 
 </details>
 
-<details closed><summary>Code</summary>
+<details open><summary>Code</summary>
 
 | File                                                  | Summary                         |
 | ---                                                   | ---                             |
