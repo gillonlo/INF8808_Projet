@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-
+# On récupère simplement les données du tournoi pour la préparation de la visualisation 1
 def get_data(
     data_teams_attack: pd.DataFrame,
     data_players: pd.DataFrame,
@@ -18,12 +18,13 @@ def get_data(
         "Third-place match": 3.5,
         "Final": 4,
     }
-
+    # Remplacer les valeurs de la colonne 'Round' par des valeurs numériques
     data_tournament["Round"] = data_tournament["Round"].map(to_replace)
     new_df = data_tournament[["Round", "Team1", "Team2"]]
     team_df = new_df.melt(
         id_vars=["Round"], value_vars=["Team1", "Team2"], value_name="Team"
     )
+    # Supprimer la colonne 'variable', trier les valeurs par 'Round' et réinitialiser l'index
     team_df.drop(columns=["variable"], inplace=True)
     team_df.sort_values(by="Round", inplace=True)
     team_df.reset_index(drop=True, inplace=True)

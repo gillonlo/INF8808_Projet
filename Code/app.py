@@ -10,6 +10,7 @@ import plotly.express as px
 
 server = app.server
 
+# On définit les images des drapeaux et les descriptions des visualisations
 images = {
     "Algérie": "https://ipdata.co/flags/dz.png",
     "Angola": "https://ipdata.co/flags/ao.png",
@@ -77,7 +78,7 @@ import Code.visu4_pretraitement as visu4_pretraitement
 
 import Code.methodologie as meth
 
-# Prétraitement
+# Prétraitement des données
 df_1 = pd.read_csv("Data/projet_data_1.csv", delimiter=";")
 df_2 = pd.read_csv("Data/projet_data_2.csv", delimiter=",")
 df_3 = pd.read_csv("Data/projet_data_3.csv", delimiter=";")
@@ -117,7 +118,7 @@ data_4 = visu4_pretraitement.get_data(
 all_data = [data_1, data_2, data_3, data_4]
 
 
-# Define the layout of the dashboard
+# Définition des layouts et des callbacks des pages
 layout_home = html.Div(
     [
         html.H1(
@@ -149,8 +150,7 @@ layout_home = html.Div(
                 }
                 for country in data_init
             ],
-            # options=[{'label': country, 'value': country} for country in data_init],
-            value="Côte d'Ivoire",
+            value="Côte d'Ivoire", # On prend le vainqueur de la CAN par défaut
             style={"width": "50%", "margin": "20px auto", "textAlign": "center"},
         ),
         html.Div(id="visu-container"),
@@ -174,7 +174,7 @@ app.layout = html.Div(
     [dcc.Location(id="url", refresh=False), html.Div(id="page-content")]
 )
 
-# Callback to update the page content based on the URL
+# Callback pour afficher la page correspondante à l'URL
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
     if pathname == "/":
@@ -185,7 +185,7 @@ def display_page(pathname):
         return "404 Page Not Found"
 
 
-# Define callback to update the graphs based on the selected value
+# Définir les callbacks pour les visualisations
 @app.callback(Output("visu-container", "children"), [Input("team-selector", "value")])
 def update_graphs(selected_value):
     graphs = [
@@ -205,7 +205,7 @@ def update_graphs(selected_value):
     ]
     return graphs
 
-
+# Ici, on définit le callback utile pour la 1ere visualisation
 @app.callback(Output("visu_1", "figure"), [Input("team-selector", "value")])
 def update_graphs(selected_value):
     return visu1.get_figure(data=data_1, team=selected_value)

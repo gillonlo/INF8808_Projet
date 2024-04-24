@@ -168,29 +168,13 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
 
     return fig
 
-
-# @app.callback(
-#     Output('output-container-radio', 'children'),
-#     [Input('criteria', 'value')]
-# )
-# def display_selected_option(value):
-#     print( f"The selected option is: {value}")
-#     if value == 'Attaque':
-#         print("Voici les données d'attaque :")
-#         print(data_copy[2])
-#     elif value == 'Défense':
-#         print("Voici les données de défense :")
-#         print(data_copy[3])
-#     else:
-#         print("Option invalide : veuillez sélectionner 'Attaque' ou 'Défense'.")
-
-
+# On ajoute une nouvelle fonction pour mettre à jour le graphique à barres 
+# On veut pouvoir switcher entre les métriques d'attaque et de défense
 @app.callback(
     Output("bar_plot", "figure"),
     [Input("criteria", "value"), Input("team-selector", "value")],
 )
 def update_bar_plot(valeur, equipe):
-    # print(equipe)
     moyennes_attaque = data_copy[2]
     moyennes_defense = data_copy[3]
 

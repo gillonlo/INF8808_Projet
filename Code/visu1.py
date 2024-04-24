@@ -10,7 +10,7 @@ import plotly.express as px
 
 df_3 = pd.read_csv("Data/projet_data_3.csv", delimiter=";")
 
-
+# Dimension du graphique
 def get_section(data: pd.DataFrame, team: str) -> list:
     return [
         dcc.Graph(
@@ -20,7 +20,7 @@ def get_section(data: pd.DataFrame, team: str) -> list:
         )
     ]
 
-
+# Fonction pour séparer le nom de l'équipe (utile lors de l'affichage du parcours de l'équipe / hoverlay)
 def split_team_name(name: str) -> str:
     words = name.split()
     if len(words) > 2:
@@ -28,7 +28,7 @@ def split_team_name(name: str) -> str:
     else:
         return name
 
-
+# Définition du graphique
 def get_figure(data: pd.DataFrame, team: str) -> dict:
     fig = go.Figure()
 
@@ -43,6 +43,8 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
         name = data.at[i, "Team"]
         team_name_with_linebreak = split_team_name(name)
 
+        # Le code suivant (assez bordélique) permet de récupérer les matchs joués par l'équipe 
+        # C'est utile pour afficher le parcours de l'équipe lors du hover
         match_df = df_3[
             df_3["Team1"].str.contains(name) | df_3["Team2"].str.contains(name)
         ]
@@ -70,6 +72,7 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
         elif i == 12:
             list_match.append("4e de la CAN")
 
+        # Utilisation d'un graphe de type "Funnel" pour l'arbre d'élimination du tournoi
         fig.add_trace(
             go.Funnel(
                 name=name,
@@ -100,12 +103,12 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
             )
         )
 
-    # Update the emphasized funnel color to red
+    # Mettre en rouge l'équipe sélectionnée (et son parcours)
     for trace in fig.data:
         if trace.name == team:
             trace.marker.color = "red"
 
-    # Update layout
+    # Mise en forme du graphique (titre, couleur de fond, légende)
     fig.update_layout(
         title={
             "text": "Tournois",

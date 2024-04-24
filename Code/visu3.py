@@ -9,6 +9,7 @@ import plotly.express as px
 import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 
+# Transformation des phases en français pour l'affichage
 to_replace = {
     0: "Poule",
     1: "8ème",
@@ -28,7 +29,7 @@ overlay_template = (
     "<b>Pourcentage de fatigue:</b> %{customdata[4]:.2f}%<extra></extra>"
 )
 
-
+# Dimension du graphique
 def get_section(data: list[pd.DataFrame], team: str) -> list:
     global DATA
     DATA = copy.deepcopy(data[0])
@@ -83,12 +84,13 @@ def get_section(data: list[pd.DataFrame], team: str) -> list:
         html.Div(id="beeswarm"),
     ]
 
-
+# Callback pour le choix de l'affichage de toutes les équipes ou seulement les concurrents
 @app.callback(
     Output("beeswarm", "children"),
     [Input("criteria1", "value"), Input("criteria2", "value")],
 )
 def update_output(selected_option_1: str, selected_option_2: str) -> list:
+    # Toutes les équipes
     if selected_option_1 == "all-teams":
         return [
             dcc.Graph(
@@ -103,6 +105,7 @@ def update_output(selected_option_1: str, selected_option_2: str) -> list:
             )
             for i in sorted(list(DATA["Round"].unique()))
         ]
+    # Sinon, on fait un tri pour ne garder que les équipes adverses (concurrents)
     else:
         if TEAM != "Côte d'Ivoire":
             list_teams = list(ADV[ADV["Team1"] == TEAM]["Team2"].unique())
@@ -123,7 +126,7 @@ def update_output(selected_option_1: str, selected_option_2: str) -> list:
             for i in list_teams
         ]
 
-
+# Définition du graphique
 def get_figure(
     data_list: list[pd.DataFrame], team: str, criteria: str, phase: float
 ) -> dict:
@@ -132,7 +135,7 @@ def get_figure(
 
     fig = go.Figure()
 
-    # Add the first strip plot
+    # Ajout d'un strip plot pour chaque équipe (scatter plot avec une seule dimension)
     trigger = None
     for x in list(data["Squad"].unique()):
         if x != team:
@@ -182,7 +185,7 @@ def get_figure(
                 ],
             )
         )
-
+    # Mise en forme du graphique
     fig.update_layout(
         title=to_replace[phase],
         height=200,
@@ -208,7 +211,7 @@ def get_figure_2(
 
     fig = go.Figure()
 
-    # Add the first strip plot
+    # Ajout du premier strip plot pour l'équipe sélectionnée
     if team != TEAM:
         fig.add_trace(
             go.Scatter(

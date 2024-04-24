@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-
+# On récupère simplement les données du tournoi pour la préparation de la visualisation 4
 def get_data(
     data_teams_attack: pd.DataFrame,
     data_players: pd.DataFrame,

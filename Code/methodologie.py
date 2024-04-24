@@ -1,6 +1,7 @@
 from dash import dcc, html
 
-
+# On définit la page de la méthodologie (permet de l'expliquer au lecteur si nécessaire)
+# C'est une page statique, donc on peut la définir directement dans le code (HTML pur)
 def get_page():
     return html.Div(
         [
