@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://www.shutterstock.com/image-vector/amman-jordan-22-december-africa-260nw-2404068983.jpg" width="100" alt="project-logo">
+  <img src="https://ichef.bbci.co.uk/images/ic/1200x675/p0h4mqdq.jpg" width="200" alt="project-logo">
 </p>
 <p align="center">
     <h1 align="center">Projet INF8808</h1>
@@ -42,13 +42,13 @@
 
 ##  Overview
 
-<code>The Africa Cup of Nations is a football sports event organized every two years by the Confederation of African Football. In 2023, this event brought together 24 teams from the African continent, pre-selected for the final phases. The competition took place in January 2024, but it was designated as the 2023 Africa Cup of Nations. SportsAI, a Canadian company specialized in sports data visualization, with whom we are collaborating on this project, has provided us with access to various statistics on the matches that took place. We will present these statistics in the following sections of this introductory report.</code>
+The Africa Cup of Nations is a football sports event organized every two years by the Confederation of African Football. In 2023, this event brought together 24 teams from the African continent, pre-selected for the final phases. The competition took place in January 2024, but it was designated as the 2023 Africa Cup of Nations. SportsAI, a Canadian company specialized in sports data visualization, with whom we are collaborating on this project, has provided us with access to various statistics on the matches that took place. We will present these statistics in the following sections of this introductory report.
 
 ---
 
 ##  Main goals
 
-<code>How to explain Ivory Coast's victory? What are the criteria explaining the superiority of this team in the context of the Africa Cup of Nations? These two questions involve different sub-goals: characterizing the teams in the competition, analyzing the journey of each team, and identifying their strengths and weaknesses. The general goal of our visualization is to easily compare teams based on performance criteria, which we will determine in collaboration with SportsAI.</code>
+How to explain Ivory Coast's victory? What are the criteria explaining the superiority of this team in the context of the Africa Cup of Nations? These two questions involve different sub-goals: characterizing the teams in the competition, analyzing the journey of each team, and identifying their strengths and weaknesses. The general goal of our visualization is to easily compare teams based on performance criteria, which we will determine in collaboration with SportsAI.
 
 ---
 
@@ -102,18 +102,18 @@
 
 | File                                                  | Summary                         |
 | ---                                                   | ---                             |
-| [app.py](Code/app.py)                                 | <code>► INSERT-TEXT-HERE</code> |
-| [app_init.py](Code/app_init.py)                       | <code>► INSERT-TEXT-HERE</code> |
-| [init_pretraitement.py](Code/init_pretraitement.py)   | <code>► INSERT-TEXT-HERE</code> |
-| [visu1_pretraitement.py](Code/visu1_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-| [visu1.py](Code/visu1.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [visu2_pretraitement.py](Code/visu2_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-| [visu2.py](Code/visu2.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [visu3_pretraitement.py](Code/visu3_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-| [visu3.py](Code/visu3.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [visu4_pretraitement.py](Code/visu4_pretraitement.py) | <code>► INSERT-TEXT-HERE</code> |
-| [visu4.py](Code/visu4.py)                             | <code>► INSERT-TEXT-HERE</code> |
-| [methodologie.py](Code/methodologie.py)               | <code>► INSERT-TEXT-HERE</code> |
+| [app.py](Code/app.py)                                 | <code>Overall construction of the application</code> |
+| [app_init.py](Code/app_init.py)                       | <code>Opening of the application</code> |
+| [init_pretraitement.py](Code/init_pretraitement.py)   | <code>Preprocessing for the dropdown menu</code> |
+| [visu1_pretraitement.py](Code/visu1_pretraitement.py) | <code>Preprocessing for the first visualization</code> |
+| [visu1.py](Code/visu1.py)                             | <code>Construction of the first visualization</code> |
+| [visu2_pretraitement.py](Code/visu2_pretraitement.py) | <code>Preprocessing for the second visualization</code> |
+| [visu2.py](Code/visu2.py)                             | <code>Construction of the second visualization</code> |
+| [visu3_pretraitement.py](Code/visu3_pretraitement.py) | <code>Preprocessing for the third visualization</code> |
+| [visu3.py](Code/visu3.py)                             | <code>Construction of the third visualization</code> |
+| [visu4_pretraitement.py](Code/visu4_pretraitement.py) | <code>Preprocessing for the fourth visualization</code> |
+| [visu4.py](Code/visu4.py)                             | <code>Construction of the fourth visualization</code> |
+| [methodologie.py](Code/methodologie.py)               | <code>Construction of the methodology page</code> |
 
 </details>
 
@@ -160,9 +160,8 @@
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Report Issues](https://local//issues)**: Submit bugs found or log feature requests for the `.` project.
-- **[Submit Pull Requests](https://local//blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://local//discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/gillonlo/INF8808_Projet/issues)**: Submit bugs found or log feature requests for the `.` project.
+- **[Submit Pull Requests](https://github.com/gillonlo/INF8808_Projet/pulls)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
@@ -193,7 +192,7 @@ Contributions are welcome! Here are several ways you can contribute:
 <summary>Contributor Graph</summary>
 <br>
 <p align="center">
-   <a href="https://github.com/gillonlo/INF8808_Projet{//}graphs/contributors">
+   <a href="https://github.com/gillonlo/INF8808_Projet/graphs/contributors">
       <img src="https://contrib.rocks/image?repo=">
    </a>
 </p>
