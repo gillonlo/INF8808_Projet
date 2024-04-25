@@ -193,11 +193,14 @@ def update_graphs(selected_value):
             [
                 html.P(
                     descriptions[i],
-                    style={"textAlign": "center", "margin": "40px 120px 10px"},
+                    style={"textAlign": "center", "margin": "40px 100px 60px"},
                 ),
                 html.Div(
                     visu.get_section(data=all_data[i], team=selected_value),
                     className=f"part_{i+1}",
+                ),
+                html.Hr(
+                    style={"width": "60%", "background": "rgba(153, 153, 153, 255)"}
                 ),
             ]
         )
