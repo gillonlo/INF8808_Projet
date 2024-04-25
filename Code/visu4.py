@@ -56,67 +56,74 @@ def get_section(data: pd.DataFrame, team: str) -> list:
 def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
 
     # Définition des régions avec les pays associés
-    regions = {
-        "Nord": ["Maroc", "Algeria", "Tunisia", "Egypt", "Libya"],
+    all_regions = {
+        "Nord": [
+            "Algeria",
+            "Egypt",
+            "Libya",
+            "Morocco",
+            "Tunisia"
+        ],
         "Est": [
-            "Sudan",
-            "South Sudan",
-            "Ethiopia",
-            "Somalia",
-            "Kenya",
-            "Ouganda",
-            "Rwanda",
             "Burundi",
-            "Tanzania",
             "Djibouti",
             "Eritrea",
-        ],
+            "Ethiopia",
+            "Kenya",
+            "Rwanda",
+            "Somalia",
+            "South Sudan",
+            "Sudan",
+            "Tanzania",
+            "Uganda"
+        ],       
         "Ouest": [
-            "Mauritania",
+            "Benin",
+            "Burkina Faso",
+            "Chad",
+            "Gambia",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Ivory Coast",
+            "Liberia",
             "Mali",
+            "Mauritania",
             "Niger",
             "Nigeria",
-            "Chad",
             "Senegal",
-            "Gambie",
-            "Guinea-Bissau",
-            "Guinea",
             "Sierra Leone",
-            "Liberia",
-            "Côte d'Ivoire",
-            "Burkina Faso",
-            "Ghana",
-            "Togo",
-            "Benin",
+            "Togo"
         ],
         "Centrale": [
             "Cameroon",
             "Central African Republic",
             "Chad",
-            "Congo DR",
             "Congo",
+            "DR Congo",
+            "Equatorial Guinea",
             "Gabon",
-            "Guinea Equ.",
-            "Sao Tome e Principe",
+            "Sao Tome and Principe"
         ],
         "Australe": [
             "Angola",
-            "Zambia",
-            "Zimbabwe",
-            "Malawi",
             "Botswana",
+            "Eswatini",
+            "Lesotho",
+            "Madagascar",
+            "Malawi",
+            "Mozambique",
             "Namibia",
             "South Africa",
-            "Mozambique",
-            "Lesotho",
-            "Swaziland",
-            "Madagascar",
-        ],
+            "Zambia",
+            "Zimbabwe"
+        ]
     }
+
 
     """
     regions = {
-        "Nord": ["Maroc", "Algérie", "Tunisi", "Égypte", "Libie"],
+        "Nord": ["Maroc", "Algérie", "Tunisie", "Égypte", "Libie"],
         "Est": ["Soudan", "Soudan du Sud", "Éthiopie", "Somalie", "Kénya", "Ouganda", "Rwanda", "Burundi", "Tanzanie", "Djibouti", "Érythrée"],
         "Ouest": ["Mauritanie", "Mali", "Niger", "Nigéria", "Chad", "Sénégal", "Gambie", "Guinée-Bissau", "Guinée", "Sierra Leone", "Libéria", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Bénin"],
         "Centrale": ["Cameroun", "République centrafricaine", "Chad", "RD Congo", "Congo", "Gabon", "Guinée Equ.", "Sao Tomé et Principe"],
@@ -125,20 +132,105 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
 
     """
 
+    # Define your dictionary mapping English names to French names
+    # english_to_french = {
+    #     "Morocco": "Maroc", "Algeria": "Algérie", "Tunisia": "Tunisie", "Egypt": "Égypte", "Libya": "Libie",
+    #     "Sudan": "Soudan", "South Sudan": "Soudan du Sud", "Ethiopia": "Éthiopie", "Somalia": "Somalie",
+    #     "Kenya": "Kénya", "Uganda": "Ouganda", "Rwanda": "Rwanda", "Burundi": "Burundi", "Tanzania": "Tanzanie",
+    #     "Djibouti": "Djibouti", "Eritrea": "Érythrée", "Mauritania": "Mauritanie", "Mali": "Mali", "Niger": "Niger",
+    #     "Nigeria": "Nigéria", "Chad": "Chad", "Senegal": "Sénégal", "Gambia": "Gambie", "Guinea-Bissau": "Guinée-Bissau",
+    #     "Guinea": "Guinée", "Sierra Leone": "Sierra Leone", "Liberia": "Libéria", "Ivory Coast": "Côte d'Ivoire",
+    #     "Burkina Faso": "Burkina Faso", "Ghana": "Ghana", "Togo": "Togo", "Benin": "Bénin", "Cameroon": "Cameroun",
+    #     "Central African Republic": "République centrafricaine", "Congo DR": "RD Congo", "Congo": "Congo", "Gabon": "Gabon",
+    #     "Equatorial Guinea": "Guinée Equ.", "Sao Tome and Principe": "Sao Tomé et Principe", "Angola": "Angola",
+    #     "Zambia": "Zambie", "Zimbabwe": "Zimbabwe", "Malawi": "Malawi", "Botswana": "Botswana", "Namibia": "Namibie",
+    #     "South Africa": "Afrique du Sud", "Lesotho": "Lesotho", "Swaziland": "Swaziland", "Madagascar": "Madagascar"
+    # }
+
     # Récupération de la région du pays sélectionné
     selected_region = data[data["Squad"] == team]["Region"].iloc[0]
 
     # Création de la liste des traces pour chaque région
     traces = []
 
+
+    # Provided regions and countries translated to English
+    participating_regions = {
+        'Nord': ['Algeria', 'Egypt', 'Mauritanie', 'Morocco', 'Tunisia'],
+        'Ouest': ['Burkina Faso', 'Cape Verde', 'Ghana', 'Gambia', 'Guinea', 'Guinea-Bissau', 'Ivory Coast', 'Mali', 'Nigeria', 'Senegal'],
+        'Centrale': ['Cameroon', 'DR Congo', 'Equatorial Guinea'],
+        'Est': ['Tanzania'],
+        'Australe': ['Angola', 'Mozambique', 'Namibia', 'South Africa', 'Zambia']
+    }
+
+    # Complete list of African countries in English
+    all_african_countries = [
+        'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Cape Verde', 'Central African Republic', 'Congo', 'Ivory Coast',
+        'Djibouti', 'Egypt', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau',
+        'Equatorial Guinea', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali', 'Morocco', 'Mauritius',
+        'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Uganda', 'DR Congo', 'Rwanda', 'Western Sahara',
+        'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'Sudan', 'South Africa', 'South Sudan', 'Tanzania',
+        'Chad', 'Togo', 'Tunisia', 'Zambia', 'Zimbabwe'
+    ]
+
+    # Mapping countries to colors based on their region and selected region
+    country_categories = {country: 0 for country in all_african_countries}  # Default to light grey
+    for region, countries in all_regions.items():
+        for country in countries:
+            if region == selected_region:
+                country_categories[country] = 2 # Le pays a joué et est dans la r
+            elif country in participating_regions[region]:
+                country_categories[country] = 1 # Darkgray
+
+
+    # Define a simple color scale with three categories
+    color_scale = [
+        # (0, 'lightgrey'),  # Pays n'ayant pas participé à la CAN
+        # (0.5, 'lightgrey'),  # Pays hors de la région sélectionnée ayant participé à la CAN
+        
+        # (0.5, 'darkgrey'),  # Pays hors de la région sélectionnée ayant participé à la CAN
+        # (1, "rgba(255, 0, 0, 0.7)" )  # Pays dans la région sélectionnée
+        
+        (0, "lightgrey"),     # Category 1
+        (1/2, "rgba(153,153,153,255)"), # Exact position for category 23
+        (1, "rgba(255, 0, 0, 0.7)")    # End position for category 3
+    ]
+
+    # Create the Choropleth map
+    locations = list(country_categories.keys())
+    categories = [country_categories[country] for country in locations]
+
     # Création de la carte de l'Afrique
-    fig = go.Figure()
+    fig = go.Figure(data=go.Choropleth(
+        locations=locations,
+        z=categories,
+        locationmode='country names',
+        colorscale=color_scale,
+        text=locations,  # Show country names on hover
+        hoverinfo="text",
+        showlegend=False,
+        showscale=False  # Ne pas afficher l'échelle
+    ))
+    
+    # Mise en forme de la carte
+    fig.update_layout(
+        title_text="Carte de l'Afrique par régions",
+        geo=dict(
+            showframe=False, 
+            showcoastlines=False, 
+            projection_type='equirectangular', 
+            bgcolor="rgba(198,240,248,0.7)",
+            scope='africa'
+        )
+    )
 
+    return fig
 
+'''
     # Parcours de chaque région
     for region, countries in regions.items():
         # Couleur de la région
-        color = "red" if region == selected_region else "rgba(153,153,153,255)"
+        color = "rgba(255, 0, 0, 0.7)" if region == selected_region else "rgba(153,153,153,255)"
         # Création de la trace pour la région
         trace = go.Choropleth(
             locations=countries,
@@ -147,6 +239,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
             colorscale=[[0, color], [1, color]],
             hoverinfo="location",
             hovertemplate="%{location}<br>Région: " + region + "<extra></extra>",
+            hoverlabel=dict(bgcolor=color, font=dict(color="white"), bordercolor="white"),
             showlegend=False,
             showscale=False,  # Ne pas afficher l'échelle
         )
@@ -169,9 +262,19 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         ),
     )
 
-    return fig
+    # Mettre en rouge l'équipe sélectionnée (et son parcours)
+    for trace in fig.data:
+        if trace.colorscale[0][1] == "rgba(255, 0, 0, 0.7)":  # Si la couleur est rouge
+            trace.hoverlabel.bgcolor = "rgba(255, 0, 0, 0.7)"
+            trace.hoverlabel.font.color = "white"
 
-# On ajoute une nouvelle fonction pour mettre à jour le graphique à barres 
+        if hasattr(trace, 'text') and trace.text is not None:
+            trace.text = [english_to_french.get(country, country) for country in trace.text]
+
+    return fig
+'''
+
+# On ajoute une nouvelle fonction pour mettre à jour le graphique à barres
 # On veut pouvoir switcher entre les métriques d'attaque et de défense
 @app.callback(
     Output("bar_plot", "figure"),
@@ -189,6 +292,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Gls90_Attack"],
                     hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#2ca02c"),
                 ),
                 go.Bar(
@@ -196,6 +300,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Poss_Attack"],
                     hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#1f77b4"),
                 ),
                 go.Bar(
@@ -203,6 +308,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_G-PK90_Attack"],
                     hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ff5733"),
                 ),
                 go.Bar(
@@ -210,6 +316,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Ast90_Attack"],
                     hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ffbb00"),
                 ),
             ]
@@ -228,6 +335,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Gls90_Defense"],
                     hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#2ca02c"),
                 ),
                 go.Bar(
@@ -235,6 +343,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Poss_Defense"],
                     hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#1f77b4"),
                 ),
                 go.Bar(
@@ -242,6 +351,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_defense["Avg_G-PK90_Defense"],
                     hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ff5733"),
                 ),
                 go.Bar(
@@ -249,6 +359,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Ast90_Defense"],
                     hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>",
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ffbb00"),
                 ),
             ]
