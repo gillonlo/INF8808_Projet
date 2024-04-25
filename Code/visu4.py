@@ -15,14 +15,14 @@ def get_section(data: pd.DataFrame, team: str) -> list:
 
     return [
         dcc.RadioItems(
-            id="criteria",
-            options=[
+            id = "criteria",
+            options = [
                 {"label": "  Attaque", "value": "Attaque"},
                 {"label": "  Défense", "value": "Défense"},
             ],
-            value="Attaque",
-            labelStyle={"display": "inline-block", "margin-right": "10px"},
-            style={
+            value = "Attaque",
+            labelStyle = {"display": "inline-block", "margin-right": "10px"},
+            style = {
                 "border": "1px solid #ccc",
                 "padding": "10px",
                 "display": "inline-block",
@@ -30,19 +30,19 @@ def get_section(data: pd.DataFrame, team: str) -> list:
             },
         ),
         html.Div(
-            style={"display": "flex"},
-            children=[
+            style = {"display": "flex"},
+            children = [
                 dcc.Graph(
-                    id="visu_4",
-                    figure=get_figure(data=data[0], team=team),
-                    style={"width": "30%"},  # Set the width of visu_4 to 30%
+                    id = "visu_4",
+                    figure = get_figure(data = data[0], team = team),
+                    style = {"width": "30%"},  # Set the width of visu_4 to 30%
                 ),
                 html.Div(
-                    style={"width": "70%"},
-                    children=[  # Set the width of the containing div to 70%
+                    style = {"width": "70%"},
+                    children = [  # Set the width of the containing div to 70%
                         dcc.Graph(
-                            id="bar_plot",  # Ajout de l'identifiant pour le graphique à barres
-                            style={
+                            id = "bar_plot",  # Ajout de l'identifiant pour le graphique à barres
+                            style = {
                                 "width": "100%"
                             },  # Set the width of bar_plot to 100% to fill its container
                         )
@@ -136,17 +136,18 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     # Parcours de chaque région
     for region, countries in regions.items():
         # Couleur de la région
-        color = "red" if region == selected_region else "rgba(153,153,153,255)"
+        color = "rgba(255, 0, 0, 0.7)" if region == selected_region else "rgba(153, 153, 153, 255)"
         # Création de la trace pour la région
         trace = go.Choropleth(
-            locations=countries,
-            z=[1] * len(countries),
-            locationmode="country names",
-            colorscale=[[0, color], [1, color]],
-            hoverinfo="location",
-            hovertemplate="%{location}<br>Région: " + region + "<extra></extra>",
-            showlegend=False,
-            showscale=False,  # Ne pas afficher l'échelle
+            locations = countries,
+            z = [1] * len(countries),
+            locationmode = "country names",
+            colorscale = [[0, color], [1, color]],
+            hoverlabel = dict(bgcolor = "rgba(153, 153, 153, 255)", font = dict(color="white")),
+            hoverinfo = "location",
+            hovertemplate = "%{location}<br>Région: " + region + "<extra></extra>",
+            showlegend = False,
+            showscale = False,  # Ne pas afficher l'échelle
         )
         traces.append(trace)
 
@@ -156,15 +157,22 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
 
     # Mise en forme de la carte
     fig.update_layout(
-        title_text="Carte de l'Afrique par régions",
-        geo=dict(
-            showframe=False,
-            showcoastlines=False,
-            projection_type="equirectangular",
-            bgcolor="rgba(0,0,0,0)",
-            scope="africa",
+        title_text = "Carte de l'Afrique par régions",
+        geo = dict(
+            showframe = False,
+            showcoastlines = False,
+            projection_type = "equirectangular",
+            bgcolor = "rgba(0,0,0,0)",
+            scope = "africa",
         ),
     )
+    
+    # Mettre en rouge l'équipe sélectionnée (et son parcours)
+    for trace in fig.data:
+        if trace.colorscale[0][1] == "rgba(255, 0, 0, 0.7)":  # Si la couleur est rouge
+                trace.hoverlabel.bgcolor = "rgba(255, 0, 0, 0.7)"
+                trace.hoverlabel.font.color = "white"
+
 
     return fig
 
@@ -180,80 +188,80 @@ def update_bar_plot(valeur, equipe):
 
     if valeur == "Attaque":
         fig = go.Figure(
-            data=[
+            data = [
                 go.Bar(
-                    name="Buts marqués en moyenne<br>par 90 minutes",
-                    x=moyennes_attaque.index,
-                    y=moyennes_attaque["Avg_Gls90_Attack"],
-                    hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>",
-                    marker=dict(color="#2ca02c"),
+                    name = "Buts marqués en moyenne<br>par 90 minutes",
+                    x = moyennes_attaque.index,
+                    y = moyennes_attaque["Avg_Gls90_Attack"],
+                    hovertemplate = "Région: %{x}<br>Buts marqués: %{y}<extra></extra>",
+                    marker = dict(color = "#2ca02c"),
                 ),
                 go.Bar(
-                    name="Possession moyenne",
-                    x=moyennes_attaque.index,
-                    y=moyennes_attaque["Avg_Poss_Attack"],
-                    hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>",
-                    marker=dict(color="#1f77b4"),
+                    name = "Possession moyenne",
+                    x = moyennes_attaque.index,
+                    y = moyennes_attaque["Avg_Poss_Attack"],
+                    hovertemplate = "Région: %{x}<br>Possession: %{y}%<extra></extra>",
+                    marker = dict(color = "#1f77b4"),
                 ),
                 go.Bar(
-                    name="Buts hors penalty marqués en moyenne<br>par 90 minutes",
-                    x=moyennes_attaque.index,
-                    y=moyennes_attaque["Avg_G-PK90_Attack"],
-                    hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>",
-                    marker=dict(color="#ff5733"),
+                    name = "Buts hors penalty marqués en moyenne<br>par 90 minutes",
+                    x = moyennes_attaque.index,
+                    y = moyennes_attaque["Avg_G-PK90_Attack"],
+                    hovertemplate = "Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>",
+                    marker = dict(color = "#ff5733"),
                 ),
                 go.Bar(
-                    name="Passes décisives en moyenne<br>par 90 minutes",
-                    x=moyennes_attaque.index,
-                    y=moyennes_attaque["Avg_Ast90_Attack"],
-                    hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>",
-                    marker=dict(color="#ffbb00"),
+                    name = "Passes décisives en moyenne<br>par 90 minutes",
+                    x = moyennes_attaque.index,
+                    y = moyennes_attaque["Avg_Ast90_Attack"],
+                    hovertemplate = "Région: %{x}<br>Passe décisive: %{y}<extra></extra>",
+                    marker = dict(color = "#ffbb00"),
                 ),
             ]
         )
         fig.update_layout(
-            barmode="group",
-            title="Métriques moyennes pour l'attaque par région",
-            plot_bgcolor="rgba(239,242,240,255)",
+            barmode = "group",
+            title = "Métriques moyennes pour l'attaque par région",
+            plot_bgcolor = "rgba(239,242,240,255)",
         )
     elif valeur == "Défense":
 
         fig = go.Figure(
-            data=[
+            data = [
                 go.Bar(
-                    name="Buts concédés en moyenne<br>par 90 minutes",
-                    x=moyennes_defense.index,
-                    y=moyennes_defense["Avg_Gls90_Defense"],
-                    hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>",
-                    marker=dict(color="#2ca02c"),
+                    name = "Buts concédés en moyenne<br>par 90 minutes",
+                    x = moyennes_defense.index,
+                    y = moyennes_defense["Avg_Gls90_Defense"],
+                    hovertemplate = "Région: %{x}<br>Buts concédés: %{y}<extra></extra>",
+                    marker = dict(color = "#2ca02c"),
                 ),
                 go.Bar(
-                    name="Possession concédée moyenne",
-                    x=moyennes_defense.index,
-                    y=moyennes_defense["Avg_Poss_Defense"],
-                    hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>",
-                    marker=dict(color="#1f77b4"),
+                    name = "Possession concédée moyenne",
+                    x = moyennes_defense.index,
+                    y = moyennes_defense["Avg_Poss_Defense"],
+                    hovertemplate = "Région: %{x}<br>Possession concédée: %{y}%<extra></extra>",
+                    marker = dict(color = "#1f77b4"),
                 ),
                 go.Bar(
-                    name="Buts hors penalty concédés en moyenne<br>par 90 minutes",
-                    x=moyennes_attaque.index,
-                    y=moyennes_defense["Avg_G-PK90_Defense"],
-                    hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>",
-                    marker=dict(color="#ff5733"),
+                    name = "Buts hors penalty concédés en moyenne<br>par 90 minutes",
+                    x = moyennes_attaque.index,
+                    y = moyennes_defense["Avg_G-PK90_Defense"],
+                    hovertemplate = "Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>",
+                    marker = dict(color = "#ff5733"),
                 ),
                 go.Bar(
-                    name="Passes décisives concédées en moyenne<br>par 90 minutes",
-                    x=moyennes_defense.index,
-                    y=moyennes_defense["Avg_Ast90_Defense"],
-                    hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>",
-                    marker=dict(color="#ffbb00"),
+                    name = "Passes décisives concédées en moyenne<br>par 90 minutes",
+                    x = moyennes_defense.index,
+                    y = moyennes_defense["Avg_Ast90_Defense"],
+                    hovertemplate = "Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>",
+                    marker = dict(color = "#ffbb00"),
                 ),
             ]
         )
         fig.update_layout(
-            barmode="group",
-            title="Métriques moyennes pour la défense par région",
-            plot_bgcolor="rgba(239,242,240,255)",
+            barmode = "group",
+            title = "Métriques moyennes pour la défense par région",
+            plot_bgcolor = "rgba(239,242,240,255)",
         )
 
     # Mettre en surbrillance la région sélectionnée en rouge
@@ -264,18 +272,18 @@ def update_bar_plot(valeur, equipe):
 
         indice_region_selectionnee = moyennes_attaque.index.get_loc(region_selectionnee)
         fig.add_shape(
-            type="rect",
-            xref="x",
-            yref="y",
-            x0=indice_region_selectionnee - 0.5,
-            y0=0,
-            x1=indice_region_selectionnee + 0.5,
-            y1=moyennes_attaque.loc[region_selectionnee, "Avg_Poss_Attack"] + 1,
-            line=dict(
-                color="red",
-                width=3,
+            type = "rect",
+            xref = "x",
+            yref = "y",
+            x0 = indice_region_selectionnee - 0.5,
+            y0 = 0,
+            x1 = indice_region_selectionnee + 0.5,
+            y1 = moyennes_attaque.loc[region_selectionnee, "Avg_Poss_Attack"] + 1,
+            line = dict(
+                color = "red",
+                width = 3,
             ),
-            fillcolor="rgba(0,0,0,0)",
+            fillcolor = "rgba(0,0,0,0)",
         )
 
     return fig

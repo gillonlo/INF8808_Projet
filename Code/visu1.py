@@ -32,7 +32,6 @@ def split_team_name(name: str) -> str:
 def get_figure(data: pd.DataFrame, team: str) -> dict:
     fig = go.Figure()
 
-    color_scale = ["#999999"]
     name_of_round = ["8ème", "Quart", "Semi", "Finale", "Gagnant"]
 
     rounds = np.delete(df_3["Round"].unique(), 3)
@@ -43,7 +42,7 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
         name = data.at[i, "Team"]
         team_name_with_linebreak = split_team_name(name)
 
-        # Le code suivant (assez bordélique) permet de récupérer les matchs joués par l'équipe 
+        # Le code suivant (assez désordonné) permet de récupérer les matchs joués par l'équipe 
         # C'est utile pour afficher le parcours de l'équipe lors du hover
         match_df = df_3[
             df_3["Team1"].str.contains(name) | df_3["Team2"].str.contains(name)
@@ -75,14 +74,16 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
         # Utilisation d'un graphe de type "Funnel" pour l'arbre d'élimination du tournoi
         fig.add_trace(
             go.Funnel(
-                name=name,
+                name = name,
                 orientation="h",
-                y=name_of_round[:round],
-                x=round * [200],
-                text=round * [team_name_with_linebreak],
-                textinfo="text",
-                marker=dict(color=color_scale[0]),
-                hovertemplate="<b>%{text}</b>"
+                y = name_of_round[:round],
+                x = round * [200],
+                text = round * [team_name_with_linebreak],
+                textinfo = "text",
+                marker = dict(color = "rgba(153, 153, 153, 255)"),
+                textfont = dict(color = "white"),
+                hoverlabel = dict(font = dict(color = 'white')),
+                hovertemplate = '<b>%{text}</b>'
                 + "<extra></extra>"
                 + "<br>"
                 + "<br>"
@@ -94,31 +95,31 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
 
         fig.add_trace(
             go.Funnel(
-                y=name_of_round[:round],
-                x=round * [5],
-                text=round * [""],
-                textinfo="text",
-                opacity=0,
-                hoverinfo="skip",
+                y = name_of_round[:round],
+                x = round * [5],
+                text = round * [""],
+                textinfo = "text",
+                opacity = 0,
+                hoverinfo = "skip",
             )
         )
 
     # Mettre en rouge l'équipe sélectionnée (et son parcours)
     for trace in fig.data:
         if trace.name == team:
-            trace.marker.color = "red"
+            trace.marker.color = "rgba(255, 0, 0, 0.7)"
 
     # Mise en forme du graphique (titre, couleur de fond, légende)
     fig.update_layout(
-        title={
+        title = {
             "text": "Tournois",
             "x": 0.5,
             "y": 0.95,
             "xanchor": "center",
             "yanchor": "top",
         },
-        plot_bgcolor="white",
-        showlegend=False,
+        plot_bgcolor = "white",
+        showlegend = False,
     )
 
     return fig
