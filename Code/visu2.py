@@ -55,7 +55,7 @@ def update_output(selected_option: str) -> list:
         categories = [
             "Possession",
             "Buts marqués",
-            "Passes décisives",
+            "Passes<br>décisives",
             "Buts hors<br>pénalty",
         ]
 
@@ -141,6 +141,7 @@ def get_figure(
             theta=categories,
             name=squad_name,
             hoverinfo="text",
+            hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
             hovertemplate="%{theta}:<br>" "%{r:.2f}<extra></extra>",
             marker=dict(color=colors),
         )
