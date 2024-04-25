@@ -153,6 +153,7 @@ def get_figure(
                         line=dict(color="rgba(10, 10, 10, 1.0)", width=1),
                     ),
                     hoverinfo="text",
+                    hoverlabel = dict(font = dict(color = 'white')),
                     hovertemplate=overlay_template,
                     text=data[data["Squad"] == x]["Player"],
                     customdata=data[data["Squad"] == x][
@@ -173,11 +174,12 @@ def get_figure(
                 ],
                 mode="markers",
                 marker=dict(
-                    color="rgba(255, 0, 0, 255)",
+                    color="rgba(255, 0, 0, 0.7)",
                     size=10,
                     line=dict(color="rgb(200, 0, 0, 255)", width=1),
                 ),
                 hoverinfo="text",
+                hoverlabel = dict(font = dict(color = 'white')),
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],
                 customdata=data[data["Squad"] == team][
