@@ -135,19 +135,20 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     """
 
     # Define your dictionary mapping English names to French names
-    # english_to_french = {
-    #     "Morocco": "Maroc", "Algeria": "Algérie", "Tunisia": "Tunisie", "Egypt": "Égypte", "Libya": "Libie",
-    #     "Sudan": "Soudan", "South Sudan": "Soudan du Sud", "Ethiopia": "Éthiopie", "Somalia": "Somalie",
-    #     "Kenya": "Kénya", "Uganda": "Ouganda", "Rwanda": "Rwanda", "Burundi": "Burundi", "Tanzania": "Tanzanie",
-    #     "Djibouti": "Djibouti", "Eritrea": "Érythrée", "Mauritania": "Mauritanie", "Mali": "Mali", "Niger": "Niger",
-    #     "Nigeria": "Nigéria", "Chad": "Chad", "Senegal": "Sénégal", "Gambia": "Gambie", "Guinea-Bissau": "Guinée-Bissau",
-    #     "Guinea": "Guinée", "Sierra Leone": "Sierra Leone", "Liberia": "Libéria", "Ivory Coast": "Côte d'Ivoire",
-    #     "Burkina Faso": "Burkina Faso", "Ghana": "Ghana", "Togo": "Togo", "Benin": "Bénin", "Cameroon": "Cameroun",
-    #     "Central African Republic": "République centrafricaine", "Congo DR": "RD Congo", "Congo": "Congo", "Gabon": "Gabon",
-    #     "Equatorial Guinea": "Guinée Equ.", "Sao Tome and Principe": "Sao Tomé et Principe", "Angola": "Angola",
-    #     "Zambia": "Zambie", "Zimbabwe": "Zimbabwe", "Malawi": "Malawi", "Botswana": "Botswana", "Namibia": "Namibie",
-    #     "South Africa": "Afrique du Sud", "Lesotho": "Lesotho", "Swaziland": "Swaziland", "Madagascar": "Madagascar"
-    # }
+    english_to_french = {
+        "Morocco": "Maroc", "Algeria": "Algérie", "Tunisia": "Tunisie", "Egypt": "Égypte", "Libya": "Libie", "Cape Verde": "Cap vert",
+        "Sudan": "Soudan", "South Sudan": "Soudan du Sud", "Ethiopia": "Éthiopie", "Somalia": "Somalie",
+        "Kenya": "Kénya", "Uganda": "Ouganda", "Rwanda": "Rwanda", "Burundi": "Burundi", "Tanzania": "Tanzanie",
+        "Djibouti": "Djibouti", "Eritrea": "Érythrée", "Mauritania": "Mauritanie", "Mali": "Mali", "Niger": "Niger",
+        "Nigeria": "Nigéria", "Chad": "Chad", "Senegal": "Sénégal", "Gambia": "Gambie", "Guinea-Bissau": "Guinée-Bissau",
+        "Guinea": "Guinée", "Sierra Leone": "Sierra Leone", "Liberia": "Libéria", "Ivory Coast": "Côte d'Ivoire",
+        "Burkina Faso": "Burkina Faso", "Ghana": "Ghana", "Togo": "Togo", "Benin": "Bénin", "Cameroon": "Cameroun",
+        "Central African Republic": "République centrafricaine", "DR Congo": "RD Congo", "Congo": "Congo", "Gabon": "Gabon",
+        "Equatorial Guinea": "Guinée Equ.", "Sao Tome and Principe": "Sao Tomé et Principe", "Angola": "Angola",
+        "Zambia": "Zambie", "Zimbabwe": "Zimbabwe", "Malawi": "Malawi", "Botswana": "Botswana", "Namibia": "Namibie",
+        "South Africa": "Afrique du Sud", "Lesotho": "Lesotho", "Eswatini": "Eswatini", "Madagascar": "Madagascar",
+        "Mauritius": "Île Maurice", "Mozambique": "Mozambique", "Seychelles": "Seychelles"
+    }
 
     # Récupération de la région du pays sélectionné
     selected_region = data[data["Squad"] == team]["Region"].iloc[0]
@@ -197,7 +198,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         z=categories,
         locationmode='country names',
         colorscale=color_scale,
-        text=[f"{loc}<br>Region: {location_to_region[loc]}" for loc in locations_countries],
+        text=[f"{english_to_french[loc]}<br>Region: {location_to_region[loc]}" for loc in locations_countries],
         hovertemplate= '%{text}<extra></extra>',
         showlegend=False,
         showscale=False  # Ne pas afficher l'échelle
@@ -223,7 +224,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         for z in trace.z:
             color = hover_colors[int(z)]
             hover_bg_colors.append(color)
-            # Set the font color to white if the background color is dark
+            # Adapter la couleur du texte en fonction de la couleur de fond
             if color in ["rgba(153,153,153,255)", "rgba(255, 0, 0, 0.7)"]:
                 font_colors.append('white')
             else:
