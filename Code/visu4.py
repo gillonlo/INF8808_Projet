@@ -80,6 +80,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         "Ouest": [
             "Benin",
             "Burkina Faso",
+            'Cape Verde',
             "Chad",
             "Gambia",
             "Ghana",
@@ -112,14 +113,15 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
             "Lesotho",
             "Madagascar",
             "Malawi",
+            "Mauritius",
             "Mozambique",
             "Namibia",
+            "Seychelles",
             "South Africa",
             "Zambia",
             "Zimbabwe"
         ]
     }
-
 
     """
     regions = {
@@ -150,64 +152,53 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     # Récupération de la région du pays sélectionné
     selected_region = data[data["Squad"] == team]["Region"].iloc[0]
 
-    # Création de la liste des traces pour chaque région
-    traces = []
-
-
-    # Provided regions and countries translated to English
+    # Pays ayant joué triés par région
     participating_regions = {
-        'Nord': ['Algeria', 'Egypt', 'Mauritanie', 'Morocco', 'Tunisia'],
+        'Nord': ['Algeria', 'Egypt', 'Mauritania', 'Morocco', 'Tunisia'],
         'Ouest': ['Burkina Faso', 'Cape Verde', 'Ghana', 'Gambia', 'Guinea', 'Guinea-Bissau', 'Ivory Coast', 'Mali', 'Nigeria', 'Senegal'],
         'Centrale': ['Cameroon', 'DR Congo', 'Equatorial Guinea'],
         'Est': ['Tanzania'],
         'Australe': ['Angola', 'Mozambique', 'Namibia', 'South Africa', 'Zambia']
     }
 
-    # Complete list of African countries in English
+    # Liste complète des pays d'Afrique (en anglais)
     all_african_countries = [
         'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Cape Verde', 'Central African Republic', 'Congo', 'Ivory Coast',
         'Djibouti', 'Egypt', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau',
         'Equatorial Guinea', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali', 'Morocco', 'Mauritius',
-        'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Uganda', 'DR Congo', 'Rwanda', 'Western Sahara',
+        'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Uganda', 'DR Congo', 'Rwanda',
         'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'Sudan', 'South Africa', 'South Sudan', 'Tanzania',
         'Chad', 'Togo', 'Tunisia', 'Zambia', 'Zimbabwe'
     ]
 
-    # Mapping countries to colors based on their region and selected region
-    country_categories = {country: 0 for country in all_african_countries}  # Default to light grey
+    # Associer le bon code couleur à chaque pays
+    country_categories = {country: 0 for country in all_african_countries}  # Tous les pays sont considérés comme n'ayant pas joué par défaut
     for region, countries in all_regions.items():
         for country in countries:
             if region == selected_region:
-                country_categories[country] = 2 # Le pays a joué et est dans la r
+                country_categories[country] = 2 # Le pays est dans la région sélectionnée
             elif country in participating_regions[region]:
-                country_categories[country] = 1 # Darkgray
-
-
-    # Define a simple color scale with three categories
+                country_categories[country] = 1 # Le pays a joué mais n'est pas dans la région sélectionnée
+    
+    # Échelle de couleur pour nos 3 catégories
     color_scale = [
-        # (0, 'lightgrey'),  # Pays n'ayant pas participé à la CAN
-        # (0.5, 'lightgrey'),  # Pays hors de la région sélectionnée ayant participé à la CAN
-        
-        # (0.5, 'darkgrey'),  # Pays hors de la région sélectionnée ayant participé à la CAN
-        # (1, "rgba(255, 0, 0, 0.7)" )  # Pays dans la région sélectionnée
-        
-        (0, "lightgrey"),     # Category 1
-        (1/2, "rgba(153,153,153,255)"), # Exact position for category 23
-        (1, "rgba(255, 0, 0, 0.7)")    # End position for category 3
+        (0, "lightgrey"),               # Pays n'ayant pas participé à la CAN
+        (1/2, "rgba(153,153,153,255)"), # Pays hors de la région sélectionnée ayant participé à la CAN
+        (1, "rgba(255, 0, 0, 0.7)")     # Pays dans la région sélectionnée
     ]
 
-    # Create the Choropleth map
-    locations = list(country_categories.keys())
-    categories = [country_categories[country] for country in locations]
-
     # Création de la carte de l'Afrique
+    locations_countries = list(country_categories.keys())
+    categories = [country_categories[country] for country in locations_countries]  
+    location_to_region = {country: region for region, countries in all_regions.items() for country in countries} 
+    
     fig = go.Figure(data=go.Choropleth(
-        locations=locations,
+        locations=locations_countries,
         z=categories,
         locationmode='country names',
         colorscale=color_scale,
-        text=locations,  # Show country names on hover
-        hoverinfo="text",
+        text=[f"{loc}<br>Region: {location_to_region[loc]}" for loc in locations_countries],
+        hovertemplate= '%{text}<extra></extra>',
         showlegend=False,
         showscale=False  # Ne pas afficher l'échelle
     ))
@@ -223,56 +214,26 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
             scope='africa'
         )
     )
-
-    return fig
-
-'''
-    # Parcours de chaque région
-    for region, countries in regions.items():
-        # Couleur de la région
-        color = "rgba(255, 0, 0, 0.7)" if region == selected_region else "rgba(153,153,153,255)"
-        # Création de la trace pour la région
-        trace = go.Choropleth(
-            locations=countries,
-            z=[1] * len(countries),
-            locationmode="country names",
-            colorscale=[[0, color], [1, color]],
-            hoverinfo="location",
-            hovertemplate="%{location}<br>Région: " + region + "<extra></extra>",
-            hoverlabel=dict(bgcolor=color, font=dict(color="white"), bordercolor="white"),
-            showlegend=False,
-            showscale=False,  # Ne pas afficher l'échelle
-        )
-        traces.append(trace)
-
-
-    # Ajout des traces à la figure
-    for trace in traces:
-        fig.add_trace(trace)
-
-    # Mise en forme de la carte
-    fig.update_layout(
-        title_text="Carte de l'Afrique par régions",
-        geo=dict(
-            showframe=False,
-            showcoastlines=False,
-            projection_type="equirectangular",
-            bgcolor="rgba(0,0,0,0)",
-            scope="africa",
-        ),
-    )
-
-    # Mettre en rouge l'équipe sélectionnée (et son parcours)
+    
+    # Changer la couleur des labels
+    hover_colors = ["lightgrey", "rgba(153,153,153,255)", "rgba(255, 0, 0, 0.7)"]
     for trace in fig.data:
-        if trace.colorscale[0][1] == "rgba(255, 0, 0, 0.7)":  # Si la couleur est rouge
-            trace.hoverlabel.bgcolor = "rgba(255, 0, 0, 0.7)"
-            trace.hoverlabel.font.color = "white"
+        hover_bg_colors = []
+        font_colors = []
+        for z in trace.z:
+            color = hover_colors[int(z)]
+            hover_bg_colors.append(color)
+            # Set the font color to white if the background color is dark
+            if color in ["rgba(153,153,153,255)", "rgba(255, 0, 0, 0.7)"]:
+                font_colors.append('white')
+            else:
+                font_colors.append('black')
 
-        if hasattr(trace, 'text') and trace.text is not None:
-            trace.text = [english_to_french.get(country, country) for country in trace.text]
+        trace.hoverlabel.bgcolor = hover_bg_colors
+        trace.hoverlabel.font.color = font_colors
 
     return fig
-'''
+
 
 # On ajoute une nouvelle fonction pour mettre à jour le graphique à barres
 # On veut pouvoir switcher entre les métriques d'attaque et de défense
