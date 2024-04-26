@@ -211,6 +211,6 @@ This project is protected under the GNU AGPLv3 License. For more details, refer 
 
 - Théau Lepouttre, Marouane Oudada, Louis Gillon, Carrie Kam, Laurène Ralay, Laure-Anne Réau
 
-[**Return**](#-overview)
+[**Return**](#overview)
 
 ---

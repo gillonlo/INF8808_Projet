@@ -1,4 +1,4 @@
 import dash
 
-# On itialise l'application Dash
+# On initialise l'application Dash
 app = dash.Dash(__name__)
