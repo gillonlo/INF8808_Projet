@@ -159,14 +159,14 @@ layout_home = html.Div(
         html.Div(id="visu-container"),
         html.Div(
             dcc.Link("Précision sur notre démarche", href="/methodologie"),
-            style={"padding": "10px", "textAlign": "center"},
+            style={"padding": "10px", "textAlign": "center", "font-size": "20px", "margin-top": "80px"},
         ),
         html.Div(
             html.A(
                 "Nos données",
                 href="https://github.com/gillonlo/INF8808_Projet/tree/main/Data",
             ),
-            style={"padding": "10px", "textAlign": "center"},
+            style={"padding": "10px", "textAlign": "center", "font-size": "20px", "margin-bottom": "100px"},
         ),
     ]
 )
