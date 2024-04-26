@@ -35,16 +35,16 @@ def get_section(data: pd.DataFrame, team: str) -> list:
                 dcc.Graph(
                     id="visu_4",
                     figure=get_figure(data=data[0], team=team),
-                    style={"width": "30%"},  # Set the width of visu_4 to 30%
+                    style={"width": "30%"},
                 ),
                 html.Div(
                     style={"width": "70%"},
-                    children=[  # Set the width of the containing div to 70%
+                    children=[
                         dcc.Graph(
                             id="bar_plot",  # Ajout de l'identifiant pour le graphique à barres
                             style={
                                 "width": "100%"
-                            },  # Set the width of bar_plot to 100% to fill its container
+                            },
                         )
                     ],
                 ),
@@ -254,7 +254,7 @@ def update_bar_plot(valeur, equipe):
                     name="Buts marqués en moyenne<br>par 90 minutes",
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Gls90_Attack"],
-                    hovertemplate="Région: %{x}<br>Buts marqués: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Buts marqués: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#2ca02c"),
                 ),
@@ -262,7 +262,7 @@ def update_bar_plot(valeur, equipe):
                     name="Possession moyenne",
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Poss_Attack"],
-                    hovertemplate="Région: %{x}<br>Possession: %{y}%<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Possession: %{y:.2f}%<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#1f77b4"),
                 ),
@@ -270,7 +270,7 @@ def update_bar_plot(valeur, equipe):
                     name="Buts hors penalty marqués en moyenne<br>par 90 minutes",
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_G-PK90_Attack"],
-                    hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ff5733"),
                 ),
@@ -278,7 +278,7 @@ def update_bar_plot(valeur, equipe):
                     name="Passes décisives en moyenne<br>par 90 minutes",
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Ast90_Attack"],
-                    hovertemplate="Région: %{x}<br>Passe décisive: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Passe décisive: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ffbb00"),
                 ),
@@ -298,7 +298,7 @@ def update_bar_plot(valeur, equipe):
                     name="Buts concédés en moyenne<br>par 90 minutes",
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Gls90_Defense"],
-                    hovertemplate="Région: %{x}<br>Buts concédés: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Buts concédés: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#2ca02c"),
                 ),
@@ -306,7 +306,7 @@ def update_bar_plot(valeur, equipe):
                     name="Possession concédée moyenne",
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Poss_Defense"],
-                    hovertemplate="Région: %{x}<br>Possession concédée: %{y}%<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Possession concédée: %{y:.2f}%<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#1f77b4"),
                 ),
@@ -314,7 +314,7 @@ def update_bar_plot(valeur, equipe):
                     name="Buts hors penalty concédés en moyenne<br>par 90 minutes",
                     x=moyennes_attaque.index,
                     y=moyennes_defense["Avg_G-PK90_Defense"],
-                    hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ff5733"),
                 ),
@@ -322,7 +322,7 @@ def update_bar_plot(valeur, equipe):
                     name="Passes décisives concédées en moyenne<br>par 90 minutes",
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Ast90_Defense"],
-                    hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y}<extra></extra>",
+                    hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y:.2f}<extra></extra>",
                     hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
                     marker=dict(color="#ffbb00"),
                 ),
