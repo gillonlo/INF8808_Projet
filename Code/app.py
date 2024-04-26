@@ -62,7 +62,7 @@ descriptions = [
         On remarque certains territoires en gris clair bleuté, qui sont des territoires en conflit ou non reconnus. \
         Les espaces blancs dans les terres sont des points d'eau. \
         Survolez un pays pour voir à quelle région il appartient. \
-        Sur le graphique en barres, vous pouvez voir le total de buts marqués, passes décisives et possessions par région d'Afrique. \
+        Sur le graphique en barres, vous pouvez voir la moyenne de buts marqués, passes décisives et possessions par région d'Afrique. \
         Vous pouvez choisir entre les critères d'attaque et de défense. \
         Vous pouvez sélectionner et désélectionner des types d'action en cliquant sur les éléments de la légende. \
         La région encadrée en rouge correspond à la région de votre pays sélectionné.",
