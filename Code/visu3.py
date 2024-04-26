@@ -131,7 +131,7 @@ def get_figure(
     data_list: list[pd.DataFrame], team: str, criteria: str, phase: float
 ) -> dict:
     data = data_list[0]
-    scale = {"Score": [-0.5, 6.5], "Age": [15, 40], "Fatigue": [0, 101]}
+    scale = {"Score": [-0.5, 6.5], "Age": [15, 40], "Fatigue": [0, 102]}
 
     fig = go.Figure()
 
@@ -228,6 +228,7 @@ def get_figure_2(
                     size=10,
                     line=dict(color="rgba(10, 10, 10, 1.0)", width=1),
                 ),
+                hoverlabel = dict(font = dict(color = "white")),
                 hoverinfo="text",
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],
@@ -256,10 +257,11 @@ def get_figure_2(
                 ],
                 mode="markers",
                 marker=dict(
-                    color="rgba(255, 0, 0, 255)",
+                    color="rgba(255, 0, 0, 0.7)",
                     size=10,
                     line=dict(color="rgb(200, 0, 0, 255)", width=1),
                 ),
+                hoverlabel = dict(font = dict(color = "white")),
                 hoverinfo="text",
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],
