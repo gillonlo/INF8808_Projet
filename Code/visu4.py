@@ -207,6 +207,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     # Mise en forme de la carte
     fig.update_layout(
         title_text="Carte de l'Afrique par régions",
+        title_x=0.5,
         geo=dict(
             showframe=False, 
             showcoastlines=False, 
@@ -286,6 +287,7 @@ def update_bar_plot(valeur, equipe):
         fig.update_layout(
             barmode="group",
             title="Métriques moyennes pour l'attaque par région",
+            title_x=0.4,
             plot_bgcolor="rgba(239,242,240,255)",
         )
     elif valeur == "Défense":
@@ -329,6 +331,7 @@ def update_bar_plot(valeur, equipe):
         fig.update_layout(
             barmode="group",
             title="Métriques moyennes pour la défense par région",
+            title_x=0.4,
             plot_bgcolor="rgba(239,242,240,255)",
         )
 
