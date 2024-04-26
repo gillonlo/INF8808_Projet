@@ -47,7 +47,7 @@ descriptions = [
         Les équipes sont classées par ordre décroissant de score. \
         On affiche les 8 meilleures et votre équipe sélectionnée ou bien les 9 meilleures si votre équipe en fait partie. \
         Survolez une équipe pour voir son score détaillé.",
-    "Voici la répartition des joueurs de chaque équipe par âge, score moyen et pourcentage de fatigue. \
+    "Voici la répartition des joueurs de chaque équipe par âge, score global et fatigue (temps de jeu par match). \
         Vous pouvez choisir entre les critères de score, d'âge et de fatigue. \
         Le score d'un joueur correspond à la somme des buts marqués, buts hors pénalty et passes décisives, ramenée sur 90 minutes. \
         L'âge d'un joueur correspond à son âge au moment de la coupe d'Afrique des Nations. \

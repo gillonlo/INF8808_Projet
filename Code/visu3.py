@@ -24,9 +24,9 @@ overlay_template = (
     '<span style="font-size:28px">%{text}</span><br>' + "<br>"
     "<b>Position:</b> %{customdata[0]}<br>"
     "<b>Équipe:</b> %{customdata[1]}<br>"
-    "<b>Score moyen:</b> %{customdata[2]:.2f} buts/assists<br>"
+    "<b>Score :</b> %{customdata[2]:.2f}<br>"
     "<b>Âge:</b> %{customdata[3]} ans<br>"
-    "<b>Pourcentage de fatigue:</b> %{customdata[4]:.2f}%<extra></extra>"
+    "<b>Fatigue:</b> %{customdata[4]:.2f} min/match<extra></extra>"
 )
 
 # Dimension du graphique
