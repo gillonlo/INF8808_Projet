@@ -122,19 +122,18 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
             "Zimbabwe"
         ]
     }
+    
+    # Liste complète des pays d'Afrique (en anglais)
+    all_african_countries = [
+        'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Cape Verde', 'Central African Republic', 'Congo', 'Ivory Coast',
+        'Djibouti', 'Egypt', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau',
+        'Equatorial Guinea', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali', 'Morocco', 'Mauritius',
+        'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Uganda', 'DR Congo', 'Rwanda',
+        'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'Sudan', 'South Africa', 'South Sudan', 'Tanzania',
+        'Chad', 'Togo', 'Tunisia', 'Zambia', 'Zimbabwe'
+    ]
 
-    """
-    regions = {
-        "Nord": ["Maroc", "Algérie", "Tunisie", "Égypte", "Libie"],
-        "Est": ["Soudan", "Soudan du Sud", "Éthiopie", "Somalie", "Kénya", "Ouganda", "Rwanda", "Burundi", "Tanzanie", "Djibouti", "Érythrée"],
-        "Ouest": ["Mauritanie", "Mali", "Niger", "Nigéria", "Chad", "Sénégal", "Gambie", "Guinée-Bissau", "Guinée", "Sierra Leone", "Libéria", "Côte d'Ivoire", "Burkina Faso", "Ghana", "Togo", "Bénin"],
-        "Centrale": ["Cameroun", "République centrafricaine", "Chad", "RD Congo", "Congo", "Gabon", "Guinée Equ.", "Sao Tomé et Principe"],
-        "Australe": ["Angola", "Zambie", "Zimbabwe", "Malawi", "Botswana", "Namibie", "Afrique du Sud", "Lesotho", "Swaziland", "Madagascar"]
-    }
-
-    """
-
-    # Define your dictionary mapping English names to French names
+    # Définition des traductions des noms de pays
     english_to_french = {
         "Morocco": "Maroc", "Algeria": "Algérie", "Tunisia": "Tunisie", "Egypt": "Égypte", "Libya": "Libie", "Cape Verde": "Cap vert",
         "Sudan": "Soudan", "South Sudan": "Soudan du Sud", "Ethiopia": "Éthiopie", "Somalia": "Somalie",
@@ -150,10 +149,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         "Mauritius": "Île Maurice", "Mozambique": "Mozambique", "Seychelles": "Seychelles"
     }
 
-    # Récupération de la région du pays sélectionné
-    selected_region = data[data["Squad"] == team]["Region"].iloc[0]
-
-    # Pays ayant joué triés par région
+    # Pays triés par région ayant participé 
     participating_regions = {
         'Nord': ['Algeria', 'Egypt', 'Mauritania', 'Morocco', 'Tunisia'],
         'Ouest': ['Burkina Faso', 'Cape Verde', 'Ghana', 'Gambia', 'Guinea', 'Guinea-Bissau', 'Ivory Coast', 'Mali', 'Nigeria', 'Senegal'],
@@ -161,16 +157,9 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         'Est': ['Tanzania'],
         'Australe': ['Angola', 'Mozambique', 'Namibia', 'South Africa', 'Zambia']
     }
-
-    # Liste complète des pays d'Afrique (en anglais)
-    all_african_countries = [
-        'Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Cape Verde', 'Central African Republic', 'Congo', 'Ivory Coast',
-        'Djibouti', 'Egypt', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau',
-        'Equatorial Guinea', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali', 'Morocco', 'Mauritius',
-        'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Uganda', 'DR Congo', 'Rwanda',
-        'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'Sudan', 'South Africa', 'South Sudan', 'Tanzania',
-        'Chad', 'Togo', 'Tunisia', 'Zambia', 'Zimbabwe'
-    ]
+    
+    # Récupération de la région du pays sélectionné
+    selected_region = data[data["Squad"] == team]["Region"].iloc[0]
 
     # Associer le bon code couleur à chaque pays
     country_categories = {country: 0 for country in all_african_countries}  # Tous les pays sont considérés comme n'ayant pas joué par défaut
