@@ -193,16 +193,23 @@ def update_graphs(selected_value):
             [
                 html.P(
                     descriptions[i],
-                    style={"textAlign": "center", "margin": "40px 100px 60px"},
+                    style={"textAlign": "justify", 
+                            "margin-top": "80px",
+                            "margin-right": "15%",
+                            "margin-bottom": "60px",
+                            "margin-left": "15%",
+                            "font-size": "20px"
+                            },
                 ),
                 html.Div(
                     visu.get_section(data=all_data[i], team=selected_value),
                     className=f"part_{i+1}",
+                    style={"margin-bottom": "60px"},
                 ),
                 html.Hr(
                     style={"width": "60%", "background": "rgba(153, 153, 153, 255)"}
                 ),
-            ]
+            ],
         )
         for i, visu in enumerate([visu1, visu2, visu3, visu4])
     ]
