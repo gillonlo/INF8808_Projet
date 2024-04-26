@@ -1,21 +1,22 @@
 from matplotlib import pyplot as plt
 import pandas as pd
 
-# Replace 'your_file.csv' with the path to your CSV file
-file_path = 'projet_data_4.csv'
-
-# Read the CSV file into a pandas DataFrame
-df = pd.read_csv(file_path,sep=";")
+# Lire le fichier CSV dans un DataFrame pandas
+chemin_fichier = 'projet_data_4.csv'
+df = pd.read_csv(chemin_fichier, sep=";")
 print(df)
 
-column = 'G-PK90'
-df_select = df[column]
+# Sélectionner la colonne à utiliser
+colonne = 'G-PK90'
+df_select = df[colonne]
 
+# Créer un histogramme avec 10 intervalles, une couleur de remplissage 'skyblue' et une couleur de bordure 'black'
 plt.hist(df_select, bins=10, color='skyblue', edgecolor='black')
 
-# Add labels and title
-plt.xlabel(column)
-plt.ylabel('Frequency')
-plt.title('Histogram of '+column)
+# Ajouter des étiquettes et un titre
+plt.xlabel(colonne)
+plt.ylabel('Fréquence')
+plt.title('Histogramme de '+colonne)
 
-plt.savefig('./graph/4_Figure_'+column+'.png')
+# Enregistrer le graphique sous forme d'image PNG dans le dossier './graph' avec un nom spécifique
+plt.savefig('./graph/4_Figure_'+colonne+'.png')
