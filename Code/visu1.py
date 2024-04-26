@@ -82,8 +82,8 @@ def get_figure(data: pd.DataFrame, team: str) -> dict:
                 textinfo = "text",
                 marker = dict(color = "rgba(153, 153, 153, 255)"),
                 textfont = dict(color = "white"),
-                hoverlabel = dict(font = dict(color = 'white')),
-                hovertemplate = '<b>%{text}</b>'
+                hoverlabel = dict(font = dict(color = 'white', size = 16)),
+                hovertemplate = '<span style="font-size:28px">%{text}</span>'
                 + "<extra></extra>"
                 + "<br>"
                 + "<br>"

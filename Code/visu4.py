@@ -198,7 +198,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
         z=categories,
         locationmode='country names',
         colorscale=color_scale,
-        text=[f"{english_to_french[loc]}<br>Region: {location_to_region[loc]}" for loc in locations_countries],
+        text=[f"<b>{english_to_french[loc]}</b><br>Region: {location_to_region[loc]}" for loc in locations_countries],
         hovertemplate= '%{text}<extra></extra>',
         showlegend=False,
         showscale=False  # Ne pas afficher l'échelle
@@ -219,6 +219,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
     
     # Changer la couleur des labels
     hover_colors = ["lightgrey", "rgba(153,153,153,255)", "rgba(255, 0, 0, 0.7)"]
+    hover_size = [16] * len(fig.data[0].z)
     for trace in fig.data:
         hover_bg_colors = []
         font_colors = []
@@ -233,6 +234,7 @@ def get_figure(data: pd.DataFrame, team: str) -> go.Figure:
 
         trace.hoverlabel.bgcolor = hover_bg_colors
         trace.hoverlabel.font.color = font_colors
+        trace.hoverlabel.font.size = hover_size
 
     return fig
 
@@ -255,7 +257,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Gls90_Attack"],
                     hovertemplate="Région: %{x}<br>Buts marqués: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#2ca02c"),
                 ),
                 go.Bar(
@@ -263,7 +265,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Poss_Attack"],
                     hovertemplate="Région: %{x}<br>Possession: %{y:.2f}%<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#1f77b4"),
                 ),
                 go.Bar(
@@ -271,7 +273,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_G-PK90_Attack"],
                     hovertemplate="Région: %{x}<br>Buts hors penalty marqués: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#ff5733"),
                 ),
                 go.Bar(
@@ -279,7 +281,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_attaque["Avg_Ast90_Attack"],
                     hovertemplate="Région: %{x}<br>Passe décisive: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#ffbb00"),
                 ),
             ]
@@ -299,7 +301,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Gls90_Defense"],
                     hovertemplate="Région: %{x}<br>Buts concédés: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#2ca02c"),
                 ),
                 go.Bar(
@@ -307,7 +309,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Poss_Defense"],
                     hovertemplate="Région: %{x}<br>Possession concédée: %{y:.2f}%<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#1f77b4"),
                 ),
                 go.Bar(
@@ -315,7 +317,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_attaque.index,
                     y=moyennes_defense["Avg_G-PK90_Defense"],
                     hovertemplate="Région: %{x}<br>Buts hors penalty concédés: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#ff5733"),
                 ),
                 go.Bar(
@@ -323,7 +325,7 @@ def update_bar_plot(valeur, equipe):
                     x=moyennes_defense.index,
                     y=moyennes_defense["Avg_Ast90_Defense"],
                     hovertemplate="Région: %{x}<br>Passe décisive concédée: %{y:.2f}<extra></extra>",
-                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+                    hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size=16)),
                     marker=dict(color="#ffbb00"),
                 ),
             ]

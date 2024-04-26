@@ -141,7 +141,7 @@ def get_figure(
             theta=categories,
             name=squad_name,
             hoverinfo="text",
-            hoverlabel = dict(bordercolor = "white", font = dict(color = "white")),
+            hoverlabel = dict(bordercolor = "white", font = dict(color = "white", size = 16)),
             hovertemplate="%{theta}:<br>" "%{r:.2f}<extra></extra>",
             marker=dict(color=colors),
         )

@@ -21,7 +21,7 @@ to_replace = {
 }
 
 overlay_template = (
-    '<span style="font-size:20px">%{text}</span><br>' + "<br>"
+    '<span style="font-size:28px">%{text}</span><br>' + "<br>"
     "<b>Position:</b> %{customdata[0]}<br>"
     "<b>Équipe:</b> %{customdata[1]}<br>"
     "<b>Score moyen:</b> %{customdata[2]:.2f} buts/assists<br>"
@@ -153,7 +153,7 @@ def get_figure(
                         line=dict(color="rgba(10, 10, 10, 1.0)", width=1),
                     ),
                     hoverinfo="text",
-                    hoverlabel = dict(font = dict(color = 'white')),
+                    hoverlabel = dict(font = dict(color = 'white', size = 16)),
                     hovertemplate=overlay_template,
                     text=data[data["Squad"] == x]["Player"],
                     customdata=data[data["Squad"] == x][
@@ -179,7 +179,7 @@ def get_figure(
                     line=dict(color="rgb(200, 0, 0, 255)", width=1),
                 ),
                 hoverinfo="text",
-                hoverlabel = dict(font = dict(color = 'white')),
+                hoverlabel = dict(font = dict(color = 'white', size = 16)),
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],
                 customdata=data[data["Squad"] == team][
@@ -228,7 +228,7 @@ def get_figure_2(
                     size=10,
                     line=dict(color="rgba(10, 10, 10, 1.0)", width=1),
                 ),
-                hoverlabel = dict(font = dict(color = "white")),
+                hoverlabel = dict(font = dict(color = "white", size = 16)),
                 hoverinfo="text",
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],
@@ -261,7 +261,7 @@ def get_figure_2(
                     size=10,
                     line=dict(color="rgb(200, 0, 0, 255)", width=1),
                 ),
-                hoverlabel = dict(font = dict(color = "white")),
+                hoverlabel = dict(font = dict(color = "white", size = 16)),
                 hoverinfo="text",
                 hovertemplate=overlay_template,
                 text=data[data["Squad"] == team]["Player"],

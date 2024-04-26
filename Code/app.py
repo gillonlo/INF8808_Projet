@@ -58,6 +58,9 @@ descriptions = [
     "Voici la répartition des équipes par région d'Afrique. \
         Il y a 5 régions : Nord, Est, Ouest, Centrale et Australe. \
         Sur la carte, la région en rouge correspond à la région de votre pays sélectionné. \
+        Les pays ayant participé à la CAN sont en gris foncés, ceux n'ayant pas participé sont en gris clair. \
+        On remarque certains territoires en gris clair bleuté, qui sont des territoires en conflit ou non reconnus. \
+        Les espaces blancs dans les terres sont des points d'eau. \
         Survolez un pays pour voir à quelle région il appartient. \
         Sur le graphique en barres, vous pouvez voir le total de buts marqués, passes décisives et possessions par région d'Afrique. \
         Vous pouvez choisir entre les critères d'attaque et de défense. \
@@ -123,11 +126,11 @@ layout_home = html.Div(
     [
         html.H1(
             "Caractérisation des équipes de la Coupe d'Afrique des Nations (CAN)",
-            style={"textAlign": "center"},
+            style={"textAlign": "center", "font-size": "40px", "font-family": "verdana", "margin-top": "100px"},
         ),
         html.P(
             "Sélectionnez une équipe pour voir ses caractéristiques:",
-            style={"textAlign": "center"},
+            style={"textAlign": "center", "font-size": "20px"},
         ),
         dcc.Dropdown(
             id="team-selector",
